@@ -1,8 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-df_players_15 = pd.read_csv("players_15.csv")
-
 st.title("Panel de Jugadores de la FIFA ⚽")
 st.sidebar.header("Navegación")
-st.dataframe(df_players_15)
+years = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
+seleccion = st.sidebar.selectbox("Selecciona un año:", years)
