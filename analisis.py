@@ -1,0 +1,25 @@
+# Importacion de libreria de Pandas
+import pandas as pd
+
+# Lectura del .csv
+# Con cualquiera que sea solo cambiar "players_<año>.csv"
+players = pd.read_csv("players_22.csv")
+# Descubrimiento de las columnas:
+# Proposito: Filtrar columnas innecesarias para el analisis.
+# Code:
+# dicc_columns = {"Names": players.columns}
+# players_column = pd.DataFrame(dicc_columns)
+# print(players_column[n:m])
+
+# Columnas a utilizar.
+columns_required = ["sofifa_id","player_url", "short_name", "long_name", "overall", "potential", "value_eur", "wage_eur", "age", "height_cm", "weight_kg",
+                    "club_name", "club_position", "club_jersey_number", "nationality_name", "preferred_foot", "pace", "shooting", "passing", "dribbling",
+                    "defending", "physic", "skill_dribbling", "skill_curve", "skill_ball_control", "movement_agility", "movement_reactions", "power_shot_power",
+                    "power_jumping", "player_face_url", "club_logo_url", "nation_logo_url"]
+
+# Formato a Guardar.
+# Solo cambiar la parte "df_players_<año>.csv".
+players.to_csv("df_players_22.csv", index=False, columns=columns_required)
+# Para procesarlos todos.
+# Subir el .csv con las columnas que seran necesarias para el analisis.
+# Y metricas a mostrar en la Aplicacion Web usando -> (Streamlit).
