@@ -41,6 +41,7 @@ if seleccion == "2015":
         st.subheader(df_players_15["short_name"][indice_actual])
         st.write("Nacionalidad")
         st.subheader(df_players_15["nationality_name"][indice_actual])
+        st.divider()
         col1, col2, col3 = st.columns(3)
         with col1:
             st.write("Edad")
