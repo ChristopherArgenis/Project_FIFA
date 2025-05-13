@@ -61,7 +61,7 @@ if seleccion == "2015":
         col1.metric("Posición", value=player["club_position"])
         col1.metric("Salario Anual", value=int(player["wage_eur"]))
         col2.metric("Número", value=int(player["club_jersey_number"]))
-        col2.image(player["club_logo_url"])
+        col2.metric("Logo del Club", st.image(player["club_logo_url"]))
         st.metric("Valuación", value=int(player["value_eur"]))
         st.divider()
         st.button("Anterior Jugador", on_click=anterior_jugador)
