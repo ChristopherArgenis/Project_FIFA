@@ -15,4 +15,6 @@ if seleccion == "2015":
   col1.image(df_players_15["player_face_url"][0], width=300)
   col1.subheader("Nombre Completo:")
   col1.subheader(df_players_15["long_name"][0])
+  col1.subheader("Nombre abreviado:")
+  col1.subheader(df_players_15["short_name"][0])
   col2.metric("Valor en Euros", value=int(df_players_15["value_eur"][0]))
