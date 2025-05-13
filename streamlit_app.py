@@ -39,15 +39,16 @@ if seleccion == "2015":
         st.subheader(df_players_15["long_name"][indice_actual])
         st.write("Alias")
         st.subheader(df_players_15["short_name"][indice_actual])
-        col1, col2 = st.columns(2)
+        col1, col2, col3 = st.columns(3)
+        st.write("Nacionalidad")
+        st.subheader(df_players_15["nationality_name"][indice_actual])
         with col1:
             st.write("Edad")
             st.subheader(df_players_15["age"][indice_actual])
+        with col2:
             st.write("Altura (cm)")
             st.subheader(df_players_15["height_cm"][indice_actual])
-        with col2:
-            st.write("Nacionalidad")
-            st.subheader(df_players_15["nationality_name"][indice_actual])
+        with col3:
             st.write("Peso (kg)")
             st.subheader(df_players_15["weight_kg"][indice_actual])
     with metric_player:
