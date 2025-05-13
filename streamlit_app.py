@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-df_players_15 = pd.read_csv("df_players_15.csv")
+df_players_15 = pd.read_csv("df_players_22.csv")
 nombres_jugadores = df_players_15['short_name'].tolist()
 
 st.title("Panel de Jugadores de la FIFA ⚽")
@@ -59,5 +59,6 @@ if seleccion == "2015":
         numero_jersey.metric("Número", value=int(df_players_15["club_jersey_number"][indice_actual]))
         st.metric("Valuación", value=int(df_players_15["value_eur"][indice_actual]))
         st.metric("Salario Anual", value=int(df_players_15["wage_eur"][indice_actual]))
+        st.divider()
         st.button("Anterior Jugador", on_click=anterior_jugador)
         st.button("Siguiente Jugador", on_click=siguiente_jugador)
