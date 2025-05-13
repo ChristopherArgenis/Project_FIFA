@@ -10,7 +10,7 @@ years = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
 seleccion = st.sidebar.selectbox("Selecciona un año:", years)
 
 if seleccion == "2015":
-  tab1, tab2 = st.tabs(["Jugador", "Comparador", "Tops", "Preguntas"])
+  tab1, tab2, tab3, tab4 = st.tabs(["Jugador", "Comparador", "Tops", "Preguntas"])
   with tab1:
     search = st.text_input("Buscar jugadores por nombre:")
     col1, col2 = st.columns(2)
