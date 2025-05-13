@@ -6,7 +6,7 @@ nombres_jugadores = df_players_15['short_name'].tolist()
 
 st.title("Panel de Jugadores de la FIFA ⚽")
 st.sidebar.header("Navegación")
-years = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
+years = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
 seleccion = st.sidebar.selectbox("Selecciona un año:", years)
 
 # Inicializar el contador del índice del jugador en la sesión
