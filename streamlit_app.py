@@ -47,7 +47,7 @@ if seleccion == "2015":
             st.subheader(df_players_15["height_cm"][indice_actual])
         with col2:
             st.write("Nacionalidad")
-            st.image(df_players_15["nationality_name"][indice_actual])
+            st.subheader(df_players_15["nationality_name"][indice_actual])
             st.write("Peso (kg)")
             st.subheader(df_players_15["weight_kg"][indice_actual])
     with metric_player:
