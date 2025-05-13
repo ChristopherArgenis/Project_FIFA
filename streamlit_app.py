@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-df_players_15 = pd.read_csv("df_players_2015.csv")
+df_players_15 = pd.read_csv("df_players_15.csv")
 
 st.title("Panel de Jugadores de la FIFA ⚽")
 st.sidebar.header("Navegación")
