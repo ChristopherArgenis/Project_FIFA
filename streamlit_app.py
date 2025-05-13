@@ -10,7 +10,7 @@ years = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"]
 seleccion = st.sidebar.selectbox("Selecciona un año:", years)
 
 if seleccion == "2015":
-  search = st.text_input("Buscar jugadores por nombre:", autocomplete=nombres_jugadores)
+  search = st.text_input("Buscar jugadores por nombre:")
   st.write(search)
   col1, col2 = st.columns(2)
   col1.image(df_players_15["player_face_url"][0], width=300)
