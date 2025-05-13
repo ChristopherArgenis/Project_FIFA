@@ -32,6 +32,8 @@ if seleccion == "2015":
   tab1, tab2, tab3, tab4 = st.tabs(["Jugador", "Comparador", "Tops", "Preguntas"])
   with tab1:
     search = st.text_input("Buscar jugadores por alias:")
+    indice = f"Indice de Jugador: {indice_actual}"
+    st.badge(indice)
     data_player, metric_player = st.columns(2)
     with data_player:
         st.image(df_players_15["player_face_url"][indice_actual], width=300, caption="Fotografia del Jugador")
