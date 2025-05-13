@@ -32,23 +32,25 @@ if seleccion == "2015":
   tab1, tab2, tab3, tab4 = st.tabs(["Jugador", "Comparador", "Tops", "Preguntas"])
   with tab1:
     search = st.text_input("Buscar jugadores por alias:")
-    col1, col2 = st.columns(2)
-    with col1:
+    data_player, metric_player = st.columns(2)
+    with data_player:
         st.image(df_players_15["player_face_url"][indice_actual], width=300, caption="Fotografia del Jugador")
         st.write("Nombre Completo")
         st.subheader(df_players_15["long_name"][indice_actual])
         st.write("Alias")
         st.subheader(df_players_15["short_name"][indice_actual])
-        st.write("Edad")
-        st.subheader(df_players_15["age"][indice_actual])
-        altura, peso = st.columns(2)
-        with altura:
+        col1, col2 = st.columns(2)
+        with col1:
+            st.write("Edad")
+            st.subheader(df_players_15["age"][indice_actual])
             st.write("Altura (cm)")
             st.subheader(df_players_15["height_cm"][indice_actual])
-        with peso:
+        with col2:
+            st.write("Nacionalidad")
+            st.image(df_players_15["nation_logo_url"][indice_actual])
             st.write("Peso (kg)")
             st.subheader(df_players_15["weight_kg"][indice_actual])
-    with col2:
+    with metric_player:
         st.metric("Valuación", value=int(df_players_15["value_eur"][indice_actual]))
         st.metric("Salario Anual", value=int(df_players_15["wage_eur"][indice_actual]))
         st.button("Anterior Jugador", on_click=anterior_jugador)
