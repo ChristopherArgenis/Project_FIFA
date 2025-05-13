@@ -37,10 +37,8 @@ if seleccion == "2015":
         st.image(df_players_15["player_face_url"][indice_actual], width=300, caption="Fotografia del Jugador")
         st.write("Nombre Completo")
         st.subheader(df_players_15["long_name"][indice_actual])
-        st.divider()
         st.write("Alias")
         st.subheader(df_players_15["short_name"][indice_actual])
-        st.divider()
         st.write("Edad")
         st.subheader(df_players_15["age"][indice_actual])
     with col2:
