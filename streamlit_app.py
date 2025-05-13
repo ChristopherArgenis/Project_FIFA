@@ -39,9 +39,9 @@ if seleccion == "2015":
         st.subheader(df_players_15["long_name"][indice_actual])
         st.write("Alias")
         st.subheader(df_players_15["short_name"][indice_actual])
-        col1, col2, col3 = st.columns(3)
         st.write("Nacionalidad")
         st.subheader(df_players_15["nationality_name"][indice_actual])
+        col1, col2, col3 = st.columns(3)
         with col1:
             st.write("Edad")
             st.subheader(df_players_15["age"][indice_actual])
