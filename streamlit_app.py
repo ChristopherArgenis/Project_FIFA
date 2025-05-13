@@ -41,6 +41,7 @@ if seleccion == "2015":
         st.subheader("Alias:")
         st.subheader(df_players_15["short_name"][indice_actual])
     with col2:
-        st.metric("Valor en Euros", value=int(df_players_15["value_eur"][indice_actual]))
+        st.metric("Pago Anual", value=int(df_players_15["value_eur"][indice_actual]))
+        st.metric("Pago Semanal", value=int(df_players_15["wage_eur"][indice_actual]))
         st.button("Anterior Jugador", on_click=anterior_jugador)
         st.button("Siguiente Jugador", on_click=siguiente_jugador)
