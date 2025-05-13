@@ -31,7 +31,7 @@ indice_actual = st.session_state['jugador_actual_index']
 if seleccion == "2015":
   tab1, tab2, tab3, tab4 = st.tabs(["Jugador", "Comparador", "Tops", "Preguntas"])
   with tab1:
-    search = st.text_input("Buscar jugadores por nombre:")
+    search = st.text_input("Buscar jugadores por alias:")
     col1, col2 = st.columns(2)
     with col1:
         st.image(df_players_15["player_face_url"][indice_actual], width=300)
