@@ -53,6 +53,7 @@ if seleccion == "2015":
             st.write("Peso (kg)")
             st.subheader(df_players_15["weight_kg"][indice_actual])
     with metric_player:
+        st.metric("Nombre del Club", value=df_players_15["club_name"][indice_actual])
         st.metric("Valuación", value=int(df_players_15["value_eur"][indice_actual]))
         st.metric("Salario Anual", value=int(df_players_15["wage_eur"][indice_actual]))
         st.button("Anterior Jugador", on_click=anterior_jugador)
