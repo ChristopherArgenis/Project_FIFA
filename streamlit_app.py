@@ -54,6 +54,11 @@ if seleccion == "2015":
             st.subheader(df_players_15["weight_kg"][indice_actual])
     with metric_player:
         st.metric("Nombre del Club", value=df_players_15["club_name"][indice_actual])
+        posicion, numero_jersey = st.columns(2)
+        with posicion:
+            st.metric("Posición", value=int(df_players_15["club_position"][indice_actual]))
+        with numero_jersey:
+            st.metric("Posición", value=int(df_players_15["club_jersey_number"][indice_actual]))
         st.metric("Valuación", value=int(df_players_15["value_eur"][indice_actual]))
         st.metric("Salario Anual", value=int(df_players_15["wage_eur"][indice_actual]))
         st.button("Anterior Jugador", on_click=anterior_jugador)
