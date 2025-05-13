@@ -1,10 +1,13 @@
 import streamlit as st
 import pandas as pd
 
+# Lectura del Dataframe
 df_players_15 = pd.read_csv("df_players_15.csv")
-nombres_jugadores = df_players_15['short_name'].tolist()
 
+# Header
 st.title("Panel de Jugadores de la FIFA ⚽")
+
+# Sidebar
 st.sidebar.header("Navegación")
 years = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
 seleccion = st.sidebar.selectbox("Selecciona un año:", years)
@@ -31,7 +34,7 @@ indice_actual = st.session_state['jugador_actual_index']
 if seleccion == "2015":
   tab1, tab2, tab3, tab4 = st.tabs(["Jugador", "Comparador", "Tops", "Preguntas"])
   with tab1:
-    search = st.text_input("Buscar jugadores por alias:")
+    # search = st.text_input("Buscar jugadores por alias:")
     indice = f"Indice de Jugador: {indice_actual}"
     st.badge(indice)
     data_player, metric_player = st.columns(2)
