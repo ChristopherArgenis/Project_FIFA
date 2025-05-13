@@ -35,13 +35,13 @@ if seleccion == "2015":
     col1, col2 = st.columns(2)
     with col1:
         st.image(df_players_15["player_face_url"][indice_actual], width=300)
-        st.subheader("Nombre Completo:")
-        st.subheader(df_players_15["long_name"][indice_actual])
+        st.subheader("Nombre Completo")
+        st.write(df_players_15["long_name"][indice_actual])
         st.divider()
-        st.subheader("Alias:")
+        st.subheader("Alias")
         st.subheader(df_players_15["short_name"][indice_actual])
         st.divider()
-        st.subheader("Edad:")
+        st.subheader("Edad")
         st.subheader(df_players_15["age"][indice_actual])
     with col2:
         st.metric("Valuación", value=int(df_players_15["value_eur"][indice_actual]))
