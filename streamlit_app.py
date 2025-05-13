@@ -40,6 +40,9 @@ if seleccion == "2015":
         st.divider()
         st.subheader("Alias:")
         st.subheader(df_players_15["short_name"][indice_actual])
+        st.divider()
+        st.subheader("Edad:")
+        st.subheader(df_players_15["age"][indice_actual])
     with col2:
         st.metric("Valuación", value=int(df_players_15["value_eur"][indice_actual]))
         st.metric("Salario Anual", value=int(df_players_15["wage_eur"][indice_actual]))
