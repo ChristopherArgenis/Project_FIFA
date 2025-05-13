@@ -37,13 +37,17 @@ if seleccion == "2015":
         st.image(df_players_15["player_face_url"][indice_actual], width=300, caption="Fotografia del Jugador")
         st.write("Nombre Completo")
         st.subheader(df_players_15["long_name"][indice_actual])
-        alias, edad = st.columns(2)
-        with alias:
-            st.write("Alias")
-            st.subheader(df_players_15["short_name"][indice_actual])
-        with edad:
-            st.write("Edad")
-            st.subheader(df_players_15["age"][indice_actual])
+        st.write("Alias")
+        st.subheader(df_players_15["short_name"][indice_actual])
+        st.write("Edad")
+        st.subheader(df_players_15["age"][indice_actual])
+        altura, peso = st.columns(2)
+        with altura:
+            st.write("Altura (cm)")
+            st.subheader(df_players_15["height_cm"][indice_actual])
+        with peso:
+            st.write("Peso (kg)")
+            st.subheader(df_players_15["weight_kg"][indice_actual])
     with col2:
         st.metric("Valuación", value=int(df_players_15["value_eur"][indice_actual]))
         st.metric("Salario Anual", value=int(df_players_15["wage_eur"][indice_actual]))
