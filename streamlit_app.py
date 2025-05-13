@@ -40,5 +40,5 @@ if seleccion == "2015":
     col1.subheader("Alias:")
     col1.subheader(df_players_15["short_name"][indice_actual])
     col2.metric("Valor en Euros", value=int(df_players_15["value_eur"][indice_actual]))
-    col2.button("Anterior Jugador", 
+    col2.button("Anterior Jugador", on_click=anterior_jugador)
     col2.button("Siguiente Jugador", on_click=siguiente_jugador)
