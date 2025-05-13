@@ -10,5 +10,5 @@ seleccion = st.sidebar.selectbox("Selecciona un año:", years)
 
 if seleccion == "2015":
   col1, col2 = st.columns(2)
-  col1.image(df_players_15["player_face_url"][0], width=500)
+  col1.image(df_players_15["player_face_url"][0], width=100)
   col2.metric("Valor en Euros", value=df_players_15["value_eur"][0])
