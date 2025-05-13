@@ -19,6 +19,12 @@ def siguiente_jugador():
     if st.session_state['jugador_actual_index'] >= len(df_players_15):
         st.session_state['jugador_actual_index'] = 0  # Volver al inicio
 
+# Función para avanzar al siguiente jugador
+def anterior_jugador():
+    st.session_state['jugador_actual_index'] -= 1
+    if st.session_state['jugador_actual_index'] < 0:
+        st.session_state['jugador_actual_index'] = 0  # Volver al inicio
+
 # Mostrar la información del jugador actual
 indice_actual = st.session_state['jugador_actual_index']
 
@@ -34,4 +40,5 @@ if seleccion == "2015":
     col1.subheader("Alias:")
     col1.subheader(df_players_15["short_name"][indice_actual])
     col2.metric("Valor en Euros", value=int(df_players_15["value_eur"][indice_actual]))
+    col2.button("Anterior Jugador", 
     col2.button("Siguiente Jugador", on_click=siguiente_jugador)
