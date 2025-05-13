@@ -36,7 +36,7 @@ if seleccion == "2015":
     st.badge(indice)
     data_player, metric_player = st.columns(2)
     with data_player:
-        player = df_players_15.iloc(indice_actual)
+        player = df_players_15.iloc[indice_actual]
         st.image(player["player_face_url"], width=300, caption="Fotografia del Jugador")
         st.write("Nombre Completo")
         st.subheader(player["long_name"])
