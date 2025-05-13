@@ -3,7 +3,7 @@ import pandas as pd
 
 # Lectura del .csv
 # Con cualquiera que sea solo cambiar "players_<año>.csv"
-players = pd.read_csv("players_22.csv")
+players = pd.read_csv("df_players_15.csv")
 # Descubrimiento de las columnas:
 # Proposito: Filtrar columnas innecesarias para el analisis.
 # Code:
@@ -19,7 +19,10 @@ columns_required = ["sofifa_id","player_url", "short_name", "long_name", "overal
 
 # Formato a Guardar.
 # Solo cambiar la parte "df_players_<año>.csv".
-players.to_csv("df_players_22.csv", index=False, columns=columns_required)
+# --- players.to_csv("df_players_22.csv", index=False, columns=columns_required) ---
 # Para procesarlos todos.
 # Subir el .csv con las columnas que seran necesarias para el analisis.
 # Y metricas a mostrar en la Aplicacion Web usando -> (Streamlit).
+
+player = players.iloc[0]
+print(player)
