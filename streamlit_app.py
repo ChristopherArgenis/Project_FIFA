@@ -34,7 +34,7 @@ if seleccion == "2015":
     search = st.text_input("Buscar jugadores por alias:")
     col1, col2 = st.columns(2)
     with col1:
-        st.image(df_players_15["player_face_url"][indice_actual], width=300)
+        st.image(df_players_15["player_face_url"][indice_actual], width=300, caption="Fotografia del Jugador")
         st.write("Nombre Completo")
         st.subheader(df_players_15["long_name"][indice_actual])
         st.divider()
