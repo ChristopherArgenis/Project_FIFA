@@ -35,7 +35,7 @@ def anterior_jugador():
     if st.session_state['jugador_actual_index'] < 0:
         st.session_state['jugador_actual_index'] = 0  # Volver al inicio
 
-def main_content(df, indice_actual):
+def main_content(df):
   tab1, tab2, tab3, tab4 = st.tabs(["Jugador", "Comparador", "Tops", "Preguntas"])
   with tab1:
     # search = st.text_input("Buscar jugadores por alias:")
