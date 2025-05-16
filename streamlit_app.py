@@ -36,7 +36,6 @@ def main_content(df, indice_actual):
   with tab1:
     # search = st.text_input("Buscar jugadores por alias:")
     indice = f"Indice de Jugador: {indice_actual}"
-    st.write(len(df))
     st.badge(indice)
     data_player, metric_player = st.columns(2)
     with data_player:
