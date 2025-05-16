@@ -72,10 +72,12 @@ def main_content(df, indice_actual):
         st.button("Siguiente Jugador", on_click=siguiente_jugador)
 
 df = cargar_datos(seleccion)
-if 'limit' not in st.session_state:
+
+# Validar el límite y el índice
+if 'limit' not in st.session_state or st.session_state['limit'] != len(df):
     st.session_state['limit'] = len(df)
-else:
-    st.session_state['limit'] = len(df)
+    st.session_state['jugador_actual_index'] = 0  # Reiniciar el índice si cambió el límite
+    
 # Mostrar la información del jugador actual
 indice_actual = st.session_state['jugador_actual_index']
 main_content(df, indice_actual)
