@@ -27,9 +27,10 @@ def siguiente_jugador(limit):
 
 # Función para avanzar al siguiente jugador
 def anterior_jugador():
-    st.session_state['jugador_actual_index'] -= 1
-    if st.session_state['jugador_actual_index'] < 0:
-        st.session_state['jugador_actual_index'] = 0  # Volver al inicio
+    if st.session_state['jugador_actual_index'] > 0:
+        st.session_state['jugador_actual_index'] -= 1
+    else:
+        st.session_state['jugador_actual_index'] = st.session_state['limit'] - 1  # Último jugador
 
 def main_content(df, indice_actual):
   tab1, tab2, tab3, tab4 = st.tabs(["Jugador", "Comparador", "Tops", "Preguntas"])
