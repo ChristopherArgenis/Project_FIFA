@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 
 # Lectura del Dataframe
-df_players_16  = pd.read_csv("df_players_16.csv")
 df_players_17 = pd.read_csv("df_players_17.csv")
 df_players_18 = pd.read_csv("df_players_18.csv")
 df_players_19 = pd.read_csv("df_players_19.csv")
@@ -79,10 +78,11 @@ indice_actual = st.session_state['jugador_actual_index']
 if seleccion == "2015":
   df_players_15 = pd.read_csv("df_players_15.csv")
   main_content(df_players_15)
+elif == seleccion == "2016":
+  df_players_16  = pd.read_csv("df_players_16.csv")
+  main_content(df_players_16)
 
 match seleccion:
-  case "2016":
-    main_content(df_players_16)
   case "2017":
     main_content(df_players_17)
   case "2018":
