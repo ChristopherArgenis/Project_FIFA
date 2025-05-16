@@ -69,8 +69,7 @@ def main_content(df, indice_actual):
         st.button("Anterior Jugador", on_click=anterior_jugador)
         st.button("Siguiente Jugador", on_click=siguiente_jugador)
 
-with st.spinner("Cargando datos..."):
-    df = cargar_datos(seleccion)
+df = cargar_datos(seleccion)
 
 # Mostrar la información del jugador actual
 indice_actual = st.session_state['jugador_actual_index']
