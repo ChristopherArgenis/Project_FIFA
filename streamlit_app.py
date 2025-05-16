@@ -2,14 +2,9 @@ import streamlit as st
 import pandas as pd
 
 # Lectura del Dataframe
-df_players_15 = pd.read_csv("df_players_15.csv")
-df_players_16  = pd.read_csv("df_players_16.csv")
-df_players_17 = pd.read_csv("df_players_17.csv")
-df_players_18 = pd.read_csv("df_players_18.csv")
-df_players_19 = pd.read_csv("df_players_19.csv")
-df_players_20 = pd.read_csv("df_players_20.csv")
-df_players_21 = pd.read_csv("df_players_21.csv")
-df_players_22 = pd.read_csv("df_players_22.csv")
+@st.cache_data
+def cargar_datos(year):
+    return pd.read_csv(f"df_players_{year}.csv")
 
 # Header
 st.title("Panel de Jugadores de la FIFA ⚽")
@@ -35,7 +30,7 @@ def anterior_jugador():
     if st.session_state['jugador_actual_index'] < 0:
         st.session_state['jugador_actual_index'] = 0  # Volver al inicio
 
-def main_content(df):
+def main_content(df, indice_actual):
   tab1, tab2, tab3, tab4 = st.tabs(["Jugador", "Comparador", "Tops", "Preguntas"])
   with tab1:
     # search = st.text_input("Buscar jugadores por alias:")
@@ -74,22 +69,9 @@ def main_content(df):
         st.button("Anterior Jugador", on_click=anterior_jugador)
         st.button("Siguiente Jugador", on_click=siguiente_jugador)
 
+with st.spinner("Cargando datos..."):
+    df = cargar_datos(seleccion)
+
 # Mostrar la información del jugador actual
 indice_actual = st.session_state['jugador_actual_index']
-
-if seleccion == "2015":
-  main_content(df_players_15)
-elif seleccion == "2016":
-  main_content(df_players_16)
-elif seleccion == "2017":
-  main_content(df_players_17)
-elif seleccion == "2018":
-  main_content(df_players_18)
-elif seleccion == "2019":
-  main_content(df_players_19)
-elif seleccion == "2020":
-  main_content(df_players_20)
-elif seleccion == "2021":
-  main_content(df_players_21)
-elif seleccion == "2022":
-  main_content(df_players_22)
+main_content(df, indice_actual)
