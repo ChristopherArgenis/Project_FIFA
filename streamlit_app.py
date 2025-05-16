@@ -73,6 +73,8 @@ def main_content(df, indice_actual):
 df = cargar_datos(seleccion)
 if 'limit' not in st.session_state:
     st.session_state['limit'] = len(df)
+else:
+    st.session_state['limit'] = len(df)
 # Mostrar la información del jugador actual
 indice_actual = st.session_state['jugador_actual_index']
 main_content(df, indice_actual)
