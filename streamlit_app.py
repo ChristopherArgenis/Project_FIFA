@@ -19,7 +19,7 @@ if 'jugador_actual_index' not in st.session_state:
     st.session_state['jugador_actual_index'] = 0
 
 # Función para avanzar al siguiente jugador
-def siguiente_jugador(limit):
+def siguiente_jugador():
     limit = st.session_state['limit']
     st.session_state['jugador_actual_index'] += 1
     if st.session_state['jugador_actual_index'] >= limit:
