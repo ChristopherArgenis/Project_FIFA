@@ -78,9 +78,9 @@ def anterior_jugador():
 indice_actual = st.session_state['jugador_actual_index']
 
 if seleccion == "2015":
-  main_content(df_players_15)
+  main_content(df_players_15, indice_actual)
 elif seleccion == "2016":
-  main_content(df_players_16)
+  main_content(df_players_16, indice_actual)
 elif seleccion == "2017":
   main_content(df_players_17)
 elif seleccion == "2018":
