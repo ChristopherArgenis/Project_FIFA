@@ -20,6 +20,7 @@ if 'jugador_actual_index' not in st.session_state:
 
 # Función para avanzar al siguiente jugador
 def siguiente_jugador(limit):
+    limit = st.session_state['limit']
     st.session_state['jugador_actual_index'] += 1
     if st.session_state['jugador_actual_index'] >= limit:
         st.session_state['jugador_actual_index'] = 0  # Volver al inicio
@@ -68,10 +69,11 @@ def main_content(df, indice_actual):
         st.metric("Valuación", value=int(player["value_eur"]))
         st.divider()
         st.button("Anterior Jugador", on_click=anterior_jugador)
-        st.button("Siguiente Jugador", on_click=siguiente_jugador(len(df)))
+        st.button("Siguiente Jugador", on_click=siguiente_jugador)
 
 df = cargar_datos(seleccion)
-
+if 'limit' not in st.session_state:
+    st.session_state['limit'] = len(df)
 # Mostrar la información del jugador actual
 indice_actual = st.session_state['jugador_actual_index']
 main_content(df, indice_actual)
