@@ -19,7 +19,7 @@ st.sidebar.header("Navegación")
 years = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
 seleccion = st.sidebar.selectbox("Selecciona un año:", years)
 
-def main_content(df):
+def main_content(df, indice_actual):
   tab1, tab2, tab3, tab4 = st.tabs(["Jugador", "Comparador", "Tops", "Preguntas"])
   with tab1:
     # search = st.text_input("Buscar jugadores por alias:")
