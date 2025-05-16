@@ -3,6 +3,7 @@ import pandas as pd
 
 # Lectura del Dataframe
 df_players_15 = pd.read_csv("df_players_15.csv")
+df_players_16  = pd.read_csv("df_players_16.csv")
 
 # Header
 st.title("Panel de Jugadores de la FIFA ⚽")
@@ -74,4 +75,4 @@ match seleccion:
   case "2015":
     main_content(df_players_15)
   case "2016":
-    st.write("Año 2016")
+    main_content(df_players_16)
