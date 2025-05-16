@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 
 # Lectura del Dataframe
+df_players_15 = pd.read_csv("df_players_15.csv")
+df_players_16  = pd.read_csv("df_players_16.csv")
 df_players_17 = pd.read_csv("df_players_17.csv")
 df_players_18 = pd.read_csv("df_players_18.csv")
 df_players_19 = pd.read_csv("df_players_19.csv")
@@ -76,22 +78,18 @@ def anterior_jugador():
 indice_actual = st.session_state['jugador_actual_index']
 
 if seleccion == "2015":
-  df_players_15 = pd.read_csv("df_players_15.csv")
   main_content(df_players_15)
 elif seleccion == "2016":
-  df_players_16  = pd.read_csv("df_players_16.csv")
   main_content(df_players_16)
-
-match seleccion:
-  case "2017":
-    main_content(df_players_17)
-  case "2018":
-    main_content(df_players_18)
-  case "2019":
-    main_content(df_players_19)
-  case "2020":
-    main_content(df_players_20)
-  case "2021":
-    main_content(df_players_21)
-  case "2022":
-    main_content(df_players_22)
+elif seleccion == "2017":
+  main_content(df_players_17)
+elif seleccion == "2018":
+  main_content(df_players_18)
+elif seleccion == "2019":
+  main_content(df_players_19)
+elif seleccion == "2020":
+  main_content(df_players_20)
+elif seleccion == "2021":
+  main_content(df_players_21)
+elif seleccion == "2022":
+  main_content(df_players_22)
