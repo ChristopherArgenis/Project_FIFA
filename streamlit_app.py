@@ -19,6 +19,22 @@ st.sidebar.header("Navegación")
 years = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
 seleccion = st.sidebar.selectbox("Selecciona un año:", years)
 
+# Inicializar el contador del índice del jugador en la sesión
+if 'jugador_actual_index' not in st.session_state:
+    st.session_state['jugador_actual_index'] = 0
+
+# Función para avanzar al siguiente jugador
+def siguiente_jugador():
+    st.session_state['jugador_actual_index'] += 1
+    if st.session_state['jugador_actual_index'] >= len(df_players_15):
+        st.session_state['jugador_actual_index'] = 0  # Volver al inicio
+
+# Función para avanzar al siguiente jugador
+def anterior_jugador():
+    st.session_state['jugador_actual_index'] -= 1
+    if st.session_state['jugador_actual_index'] < 0:
+        st.session_state['jugador_actual_index'] = 0  # Volver al inicio
+
 def main_content(df, indice_actual):
   tab1, tab2, tab3, tab4 = st.tabs(["Jugador", "Comparador", "Tops", "Preguntas"])
   with tab1:
@@ -58,29 +74,13 @@ def main_content(df, indice_actual):
         st.button("Anterior Jugador", on_click=anterior_jugador)
         st.button("Siguiente Jugador", on_click=siguiente_jugador)
 
-# Inicializar el contador del índice del jugador en la sesión
-if 'jugador_actual_index' not in st.session_state:
-    st.session_state['jugador_actual_index'] = 0
-
-# Función para avanzar al siguiente jugador
-def siguiente_jugador():
-    st.session_state['jugador_actual_index'] += 1
-    if st.session_state['jugador_actual_index'] >= len(df_players_15):
-        st.session_state['jugador_actual_index'] = 0  # Volver al inicio
-
-# Función para avanzar al siguiente jugador
-def anterior_jugador():
-    st.session_state['jugador_actual_index'] -= 1
-    if st.session_state['jugador_actual_index'] < 0:
-        st.session_state['jugador_actual_index'] = 0  # Volver al inicio
-
 # Mostrar la información del jugador actual
 indice_actual = st.session_state['jugador_actual_index']
 
 if seleccion == "2015":
-  main_content(df_players_15, indice_actual)
+  main_content(df_players_15)
 elif seleccion == "2016":
-  main_content(df_players_16, indice_actual)
+  main_content(df_players_16)
 elif seleccion == "2017":
   main_content(df_players_17)
 elif seleccion == "2018":
