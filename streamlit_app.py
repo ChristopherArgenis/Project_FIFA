@@ -4,7 +4,7 @@ import pandas as pd
 # Lectura del Dataframe
 @st.cache_data
 def cargar_datos(year):
-    return pd.read_csv(f"df_players_{year}.csv")
+    return pd.read_csv(f"df_players_{year[2:]}.csv")
 
 # Header
 st.title("Panel de Jugadores de la FIFA ⚽")
