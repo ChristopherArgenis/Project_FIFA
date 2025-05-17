@@ -73,7 +73,7 @@ def main_content(df, indice_actual):
             st.metric("Habilidad General", value=int(player["overall"]))
         with potential:
             st.metric("Potencial", value=int(player["potential"]))
-        with st.expander("Estadisticas"):
+        with st.expander("Puntaje de habilidades"):
             st.write("Aqui")
         st.button("Anterior Jugador", on_click=anterior_jugador)
         st.button("Siguiente Jugador", on_click=siguiente_jugador)
