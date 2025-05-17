@@ -68,8 +68,11 @@ def main_content(df, indice_actual):
         col2.image(player["club_logo_url"], width=75)
         st.metric("Valuación", value=int(player["value_eur"]))
         st.divider()
-        st.metric("Habilidad General", value=int(player["overall"]))
-        st.metric("Potencial", value=int(player["potential"]))
+        skill, potential = st.columns(2)
+        with skill:
+            st.metric("Habilidad General", value=int(player["overall"]))
+        with potential:
+            st.metric("Potencial", value=int(player["potential"]))
         st.button("Anterior Jugador", on_click=anterior_jugador)
         st.button("Siguiente Jugador", on_click=siguiente_jugador)
 
