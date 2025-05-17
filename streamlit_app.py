@@ -59,6 +59,7 @@ def main_content(df, indice_actual):
         with col3:
             st.write("Peso (kg)")
             st.subheader(player["weight_kg"])
+        st.button("Anterior Jugador", on_click=anterior_jugador)
     with metric_player:
         st.metric("Nombre del Club", value=player["club_name"])
         col1, col2 = st.columns(2)
@@ -77,7 +78,6 @@ def main_content(df, indice_actual):
             st.metric("Nivel Fisico", value=int(player["physic"]))
         with st.expander("Puntaje de habilidades"):
             st.write("Aqui")
-        st.button("Anterior Jugador", on_click=anterior_jugador)
         st.button("Siguiente Jugador", on_click=siguiente_jugador)
 
 df = cargar_datos(seleccion)
