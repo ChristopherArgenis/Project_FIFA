@@ -59,6 +59,7 @@ def main_content(df, indice_actual):
         with col3:
             st.write("Peso (kg)")
             st.subheader(player["weight_kg"])
+        st.divider()
         st.button("Anterior Jugador", on_click=anterior_jugador)
     with metric_player:
         st.metric("Nombre del Club", value=player["club_name"])
