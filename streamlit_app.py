@@ -71,8 +71,10 @@ def main_content(df, indice_actual):
         skill, potential = st.columns(2)
         with skill:
             st.metric("Habilidad General", value=int(player["overall"]))
+            st.metric("Pie Preferente", value=int(player["preferred_foot"]))
         with potential:
             st.metric("Potencial", value=int(player["potential"]))
+            st.metric("Nivel Fisico", value=player["physic"])
         with st.expander("Puntaje de habilidades"):
             st.write("Aqui")
         st.button("Anterior Jugador", on_click=anterior_jugador)
