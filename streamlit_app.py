@@ -81,11 +81,11 @@ def main_content(df, indice_actual):
         st.subheader("Niveles de Habilidad:")
         col1, col2, col3 = st.columns(3)
         with col1:
-            st.metric("Tiro", player["shooting"])
+            st.metric("Tiro", value=int(player["shooting"]))
         with col2:
-            st.metric("Pase", player["passing"])
+            st.metric("Pase", value=int(player["passing"]))
         with col3:
-            st.metric("Defensa", player["defending"])
+            st.metric("Defensa", value=int(player["defending"]))
         st.button("Siguiente Jugador", on_click=siguiente_jugador)
 
 df = cargar_datos(seleccion)
