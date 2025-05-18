@@ -39,7 +39,7 @@ def main_content(df, indice_actual):
   tab1, tab2, tab3, tab4 = st.tabs(["Jugador", "Comparador", "Tops", "Preguntas"])
   with tab1:
     # Selector de club dentro de la pestaña "Jugador"
-    clubes = sorted(df['club_name'].unique())
+    clubes = df['club_name'].unique()
     club_seleccionado = st.selectbox("Filtrar por club:", ["Todos"] + list(clubes))
 
     # Filtrar el DataFrame por club si se selecciona uno
