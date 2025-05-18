@@ -43,7 +43,7 @@ def main_content(df, indice_actual):
     st.badge(indice)
     data_player, metric_player = st.columns(2)
     with data_player:
-        player = df_filtrado.iloc[indice_actual]
+        player = df.iloc[indice_actual]
         st.image(player["player_face_url"], width=300, caption="Fotografia del Jugador")
         st.write("Nombre Completo")
         st.subheader(player["long_name"])
