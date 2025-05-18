@@ -50,7 +50,7 @@ def main_content(df, indice_actual):
 
     # Actualizar el límite de jugadores
     st.session_state['limit'] = len(df_filtrado)
-
+    st.write(len(df_filtrado))
     # Asegurar que el índice actual esté dentro de los límites
     if st.session_state['jugador_actual_index'] >= st.session_state['limit']:
         st.session_state['jugador_actual_index'] = 0
