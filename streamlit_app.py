@@ -77,8 +77,15 @@ def main_content(df, indice_actual):
         with potential:
             st.metric("Potencial", value=int(player["potential"]))
             st.metric("Nivel Fisico", value=int(player["physic"]))
-        with st.expander("Puntaje de habilidades"):
-            st.write("Aqui")
+        st.divider()
+        st.subheader("Niveles de Habilidad:")
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.metric("Tiro", player["shooting"])
+        with col2:
+            st.metric("Pase", player["passing"])
+        with col3:
+            st.metric("Defensa", player["defending"])
         st.button("Siguiente Jugador", on_click=siguiente_jugador)
 
 df = cargar_datos(seleccion)
