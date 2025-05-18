@@ -47,6 +47,10 @@ def main_content(df, indice_actual):
         df_filtrado = df[df['club_name'] == club_seleccionado].reset_index(drop=True)
     else:
         df_filtrado = df
+
+    # Actualizar el límite de jugadores
+    st.session_state['limit'] = len(df_filtrado)
+      
     # search = st.text_input("Buscar jugadores por alias:")
     indice = f"Indice de Jugador: {indice_actual}"
     st.badge(indice)
