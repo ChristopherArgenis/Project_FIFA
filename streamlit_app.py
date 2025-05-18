@@ -43,8 +43,7 @@ def Jugador(df, indice):
     data_player, metric_player = st.columns(2)
     with data_player:
         st.image(player["player_face_url"], width=300, caption="Fotografia del Jugador")
-        st.write("Nombre Completo")
-        st.subheader(player["long_name"])
+        st.metric("Nombre Completo", value=player["long_name"])
         st.metric("Alias", value=player["short_name"])
         st.write("Nacionalidad")
         st.subheader(player["nationality_name"])
