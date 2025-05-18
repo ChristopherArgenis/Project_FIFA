@@ -1,7 +1,8 @@
 import streamlit as st
 import pandas as pd
 
-st.set_page_config(layout="wide")
+# Mejor uso solo en Ordenador o Laptop
+# st.set_page_config(layout="wide")
 
 # Lectura del Dataframe
 @st.cache_data
