@@ -45,6 +45,7 @@ def main_content(df, indice_actual):
     # Filtrar el DataFrame por club si se selecciona uno
     if club_seleccionado != "Todos":
         df_filtrado = df[df['club_name'] == club_seleccionado].reset_index(drop=True)
+        st.session_state["limit"] = len(df_filtrado)
     else:
         df_filtrado = df
     # search = st.text_input("Buscar jugadores por alias:")
