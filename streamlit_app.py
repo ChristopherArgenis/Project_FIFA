@@ -46,8 +46,7 @@ def Jugador(df, indice):
         st.write("Nombre Completo")
         st.subheader(player["long_name"])
         st.metric("Alias", value=player["short_name"])
-        st.write("Nacionalidad")
-        st.subheader(player["nationality_name"])
+        st.metric("Nacionalidad", value=player["nationality_name"])
         st.divider()
         col1, col2, col3 = st.columns(3)
         with col1:
