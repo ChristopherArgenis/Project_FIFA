@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 
+st.set_page_config(layout="wide")
+
 # Lectura del Dataframe
 @st.cache_data
 def cargar_datos(year):
