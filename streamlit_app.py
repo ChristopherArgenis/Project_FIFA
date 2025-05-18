@@ -35,15 +35,13 @@ def anterior_jugador():
     else:
         st.session_state['jugador_actual_index'] = st.session_state['limit'] - 1  # Último jugador
 
-def main_content(df, indice_actual):
-  tab1, tab2, tab3, tab4 = st.tabs(["Jugador", "Comparador", "Tops", "Preguntas"])
-  with tab1:
+def Jugador(df, indice):
+    player = df.iloc[indice_actual]
     # search = st.text_input("Buscar jugadores por alias:")
     indice = f"Indice de Jugador: {indice_actual}"
     st.badge(indice)
     data_player, metric_player = st.columns(2)
     with data_player:
-        player = df.iloc[indice_actual]
         st.image(player["player_face_url"], width=300, caption="Fotografia del Jugador")
         st.write("Nombre Completo")
         st.subheader(player["long_name"])
@@ -89,6 +87,19 @@ def main_content(df, indice_actual):
             st.metric("Defensa", value=int(player["defending"]))
         st.divider()
         st.button("Siguiente Jugador", on_click=siguiente_jugador)
+
+def main_content(df, indice_actual):
+  jugador, comparador, tops, preguntas, graficos = st.tabs(["Jugador", "Comparador", "Tops", "Preguntas", "Graficos"])
+  with jugador:
+    Jugador(df, indice_actual)
+  with comparador:
+    st.write("Comparador")
+  with tops:
+    st.write("Tops")
+  with preguntas:
+    st.write("Preguntas")
+  with graficos:
+    st.write("Graficos")
 
 df = cargar_datos(seleccion)
 
