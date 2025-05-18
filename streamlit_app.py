@@ -78,7 +78,6 @@ def main_content(df, indice_actual):
             st.metric("Potencial", value=int(player["potential"]))
             st.metric("Nivel Fisico", value=int(player["physic"]))
         st.divider()
-        st.subheader("Niveles de Habilidad:")
         col1, col2, col3 = st.columns(3)
         with col1:
             st.metric("Tiro", value=int(player["shooting"]))
