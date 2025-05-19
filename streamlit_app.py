@@ -53,28 +53,31 @@ def formato(valor, is_wage):
         case _:
             return valor_numerico
 
-def Jugador(df, indice):
+def datosJugador(player):
+    st.image(player["player_face_url"], width=300, caption="Fotografia del Jugador")
+    st.write("Nombre Completo")
+    st.subheader(player["long_name"])
+    st.metric("Alias", value=player["short_name"])
+    st.metric("Nacionalidad", value=player["nationality_name"])
+    st.divider()
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.metric("Edad", value=player["age"])
+    with col2:
+        st.metric("Altura (cm)", value=player["height_cm"])
+    with col3:
+        st.metric("Peso (kg)", value=player["weight_kg"])
+    st.divider()
+    st.button("Anterior Jugador", on_click=anterior_jugador)
+
+def Jugador(df, indice_actual):
     player = df.iloc[indice_actual]
     # search = st.text_input("Buscar jugadores por alias:")
     indice = f"Indice de Jugador: {indice_actual}"
     st.badge(indice)
     data_player, metric_player = st.columns(2)
     with data_player:
-        st.image(player["player_face_url"], width=300, caption="Fotografia del Jugador")
-        st.write("Nombre Completo")
-        st.subheader(player["long_name"])
-        st.metric("Alias", value=player["short_name"])
-        st.metric("Nacionalidad", value=player["nationality_name"])
-        st.divider()
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            st.metric("Edad", value=player["age"])
-        with col2:
-            st.metric("Altura (cm)", value=player["height_cm"])
-        with col3:
-            st.metric("Peso (kg)", value=player["weight_kg"])
-        st.divider()
-        st.button("Anterior Jugador", on_click=anterior_jugador)
+        datosJugador(player)
     with metric_player:
         st.metric("Nombre del Club", value=player["club_name"])
         col1, col2 = st.columns(2)
