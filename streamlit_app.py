@@ -38,9 +38,9 @@ def anterior_jugador():
 def formato(valor, is_wage):
     valor_numerico = str(int(valor * 52)) if is_wage else str(int(valor))
     if len(valor_numerico) > 6:
-        return f"{numerico[:3]} M"
+        return f"{valor_numerico[:3]} M"
     else:
-        return f"{numerico[:3]} mil"
+        return f"{valor_numerico[:3]} mil"
 
 def Jugador(df, indice):
     player = df.iloc[indice_actual]
