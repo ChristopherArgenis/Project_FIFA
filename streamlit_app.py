@@ -36,7 +36,7 @@ def anterior_jugador():
         st.session_state['jugador_actual_index'] = st.session_state['limit'] - 1  # Último jugador
 
 def formato(valor, is_wage):
-    valor_numerico = str(int(valor * 52)) if es_wage else str(int(valor))
+    valor_numerico = str(int(valor * 52)) if is_wage else str(int(valor))
     if len(valor_numerico) > 6:
         return f"{numerico[:3]} M"
     else:
