@@ -53,7 +53,7 @@ def formato(valor, is_wage):
         case _:
             return valor_numerico
 
-def is_nulo(valor, texto_si_nulo="-"):
+def is_nulo(valor, texto_si_nulo="Sin datos"):
     if pd.isna(valor):
         return texto_si_nulo
     return int(valor)
