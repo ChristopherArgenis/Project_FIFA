@@ -56,7 +56,7 @@ def formato(valor, is_wage):
 def is_nulo(valor, texto_si_nulo="-"):
     if pd.isna(valor):
         return texto_si_nulo
-    return valor
+    return int(valor)
 
 def datosJugador(player):
     st.image(player["player_face_url"], width=300, caption="Fotografia del Jugador")
@@ -90,14 +90,14 @@ def metricasJugador(player):
         st.metric("Pie Preferente", value=player["preferred_foot"])
     with potential:
         st.metric("Potencial", value=int(player["potential"]))
-        st.metric("Nivel Fisico", value=is_nulo(int(player["physic"])))
+        st.metric("Nivel Fisico", value=is_nulo(player["physic"]))
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.metric("Tiro", value=is_nulo(int(player["shooting"])))
+        st.metric("Tiro", value=is_nulo(player["shooting"]))
     with col2:
-        st.metric("Pase", value=is_nulo(int(player["passing"])))
+        st.metric("Pase", value=is_nulo(player["passing"]))
     with col3:
-        st.metric("Defensa", value=is_nulo(int(player["defending"])))
+        st.metric("Defensa", value=is_nulo(player["defending"]))
     st.divider()
     st.button("Siguiente Jugador", on_click=siguiente_jugador)
 
