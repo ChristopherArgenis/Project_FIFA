@@ -35,8 +35,9 @@ def anterior_jugador():
     else:
         st.session_state['jugador_actual_index'] = st.session_state['limit'] - 1  # Último jugador
 
-def formato(salario_semanal):
-    numerico = str(int(salario_semanal*52))
+def formato(salario_semanal, wage):
+    if wage:
+        numerico = str(int(salario_semanal*52))
     if len(numerico) > 6:
         return f"{numerico[:3]} M"
     else:
@@ -68,10 +69,10 @@ def Jugador(df, indice):
         st.metric("Nombre del Club", value=player["club_name"])
         col1, col2 = st.columns(2)
         col1.metric("Posición", value=player["club_position"])
-        col1.metric("Salario Anual", value=formato(player["wage_eur"]))
+        col1.metric("Salario Anual", value=formato(player["wage_eur"], True))
         col2.metric("Número", value=int(player["club_jersey_number"]))
         col2.image(player["club_logo_url"], width=75)
-        st.metric("Valuación", value=formato(player["value_eur"]))
+        st.metric("Valuación", value=formato(player["value_eur"], False))
         st.divider()
         skill, potential = st.columns(2)
         with skill:
