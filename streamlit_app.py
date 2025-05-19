@@ -51,16 +51,10 @@ def Jugador(df, indice):
         col1, col2, col3 = st.columns(3)
         with col1:
             st.metric("Edad", value=player["age"])
-            st.write("Edad")
-            st.subheader(player["age"])
         with col2:
             st.metric("Altura (cm)", value=player["height_cm"])
-            st.write("Altura (cm)")
-            st.subheader(player["height_cm"])
         with col3:
             st.metric("Peso (kg)", value=player["weight_kg"])
-            st.write("Peso (kg)")
-            st.subheader(player["weight_kg"])
         st.divider()
         st.button("Anterior Jugador", on_click=anterior_jugador)
     with metric_player:
