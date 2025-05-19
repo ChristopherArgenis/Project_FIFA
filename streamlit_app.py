@@ -53,6 +53,12 @@ def formato(valor, is_wage):
         case _:
             return valor_numerico
 
+def is_null(player):
+    con_nulos = ["physic", "shooting", "passing", "defending", "dribbling", "pace"]
+    for columna in con_nulos:
+        if player[i] == None:
+            player[i] == "Sin Datos"
+
 def datosJugador(player):
     st.image(player["player_face_url"], width=300, caption="Fotografia del Jugador")
     st.write("Nombre Completo")
@@ -71,6 +77,7 @@ def datosJugador(player):
     st.button("Anterior Jugador", on_click=anterior_jugador)
 
 def metricasJugador(player):
+    is_null(player)
     st.metric("Nombre del Club", value=player["club_name"])
     col1, col2 = st.columns(2)
     col1.metric("Posición", value=player["club_position"])
