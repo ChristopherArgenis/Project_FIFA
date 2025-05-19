@@ -70,6 +70,32 @@ def datosJugador(player):
     st.divider()
     st.button("Anterior Jugador", on_click=anterior_jugador)
 
+def metricasJugador(player):
+    st.metric("Nombre del Club", value=player["club_name"])
+    col1, col2 = st.columns(2)
+    col1.metric("Posición", value=player["club_position"])
+    col1.metric("Salario Anual", value=formato(player["wage_eur"], True))
+    col2.metric("Número", value=int(player["club_jersey_number"]))
+    col2.image(player["club_logo_url"], width=75)
+    st.metric("Valuación", value=formato(player["value_eur"], False))
+    st.divider()
+    skill, potential = st.columns(2)
+    with skill:
+        st.metric("Habilidad General", value=int(player["overall"]))
+        st.metric("Pie Preferente", value=player["preferred_foot"])
+    with potential:
+        st.metric("Potencial", value=int(player["potential"]))
+        st.metric("Nivel Fisico", value=int(player["physic"]))
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.metric("Tiro", value=int(player["shooting"]))
+    with col2:
+        st.metric("Pase", value=int(player["passing"]))
+    with col3:
+        st.metric("Defensa", value=int(player["defending"]))
+    st.divider()
+    st.button("Siguiente Jugador", on_click=siguiente_jugador)
+
 def Jugador(df, indice_actual):
     player = df.iloc[indice_actual]
     # search = st.text_input("Buscar jugadores por alias:")
@@ -79,30 +105,7 @@ def Jugador(df, indice_actual):
     with data_player:
         datosJugador(player)
     with metric_player:
-        st.metric("Nombre del Club", value=player["club_name"])
-        col1, col2 = st.columns(2)
-        col1.metric("Posición", value=player["club_position"])
-        col1.metric("Salario Anual", value=formato(player["wage_eur"], True))
-        col2.metric("Número", value=int(player["club_jersey_number"]))
-        col2.image(player["club_logo_url"], width=75)
-        st.metric("Valuación", value=formato(player["value_eur"], False))
-        st.divider()
-        skill, potential = st.columns(2)
-        with skill:
-            st.metric("Habilidad General", value=int(player["overall"]))
-            st.metric("Pie Preferente", value=player["preferred_foot"])
-        with potential:
-            st.metric("Potencial", value=int(player["potential"]))
-            st.metric("Nivel Fisico", value=int(player["physic"]))
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            st.metric("Tiro", value=int(player["shooting"]))
-        with col2:
-            st.metric("Pase", value=int(player["passing"]))
-        with col3:
-            st.metric("Defensa", value=int(player["defending"]))
-        st.divider()
-        st.button("Siguiente Jugador", on_click=siguiente_jugador)
+        metricasJugador(player)
 
 def main_content(df, indice_actual):
   jugador, comparador, tops, preguntas, graficos = st.tabs(["Jugador", "Comparador", "Tops", "Preguntas", "Graficos"])
