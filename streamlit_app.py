@@ -37,10 +37,21 @@ def anterior_jugador():
 
 def formato(valor, is_wage):
     valor_numerico = str(int(valor * 52)) if is_wage else str(int(valor))
-    if len(valor_numerico) > 6:
-        return f"{valor_numerico[:3]} M"
-    else:
-        return f"{valor_numerico[:3]} mil"
+    match len(valor_numerico):
+        case 9:
+            return f"{valor_numerico[:3]} M"
+        case 8:
+            return f"{valor_numerico[:2]} M"
+        case 7:
+            return f"{valor_numerico[0]} M"
+        case 6:
+            return f"{valor_numerico[:3]} mil"
+        case 5:
+            return f"{valor_numerico[:2]} mil"
+        case 4:
+            return f"{valor_numerico[0]} mil"
+        case _:
+            return valor_numerico
 
 def Jugador(df, indice):
     player = df.iloc[indice_actual]
