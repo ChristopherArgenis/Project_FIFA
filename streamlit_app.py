@@ -82,7 +82,7 @@ def Jugador(df, indice):
         col1.metric("Salario Anual", value=formato(player["wage_eur"], True))
         col2.metric("Número", value=int(player["club_jersey_number"]))
         col2.image(player["club_logo_url"], width=75)
-        st.metric("Valuación", value=int(player["value_eur"]))
+        st.metric("Valuación", value=formato(player["value_eur"], False))
         st.divider()
         skill, potential = st.columns(2)
         with skill:
