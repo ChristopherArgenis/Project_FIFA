@@ -64,7 +64,7 @@ def Jugador(df, indice):
         st.metric("Nombre del Club", value=player["club_name"])
         col1, col2 = st.columns(2)
         col1.metric("Posición", value=player["club_position"])
-        col1.metric("Salario Anual", value=int(player["wage_eur"]))
+        col1.metric("Salario Anual", value=int(player["wage_eur"]*52))
         col2.metric("Número", value=int(player["club_jersey_number"]))
         col2.image(player["club_logo_url"], width=75)
         st.metric("Valuación", value=int(player["value_eur"]))
