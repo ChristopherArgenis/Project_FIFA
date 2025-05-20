@@ -27,8 +27,7 @@ columns_required = ["sofifa_id","player_url", "short_name", "long_name", "overal
 # player = players.iloc[0]
 # print(player)
 
-estadisticas = players[["skill_dribbling", "dribbling", "shooting", "passing", "pace", "defending",
-                        "skill_curve", "skill_ball_control", "movement_agility", "movement_reactions",
-                        "power_shot_power", "power_jumping"]]
+estadisticas = players[["skill_dribbling", "dribbling", "skill_curve", "skill_ball_control", 
+                        "movement_agility", "movement_reactions", "power_shot_power", "power_jumping"]]
 
 print(estadisticas.head(10))
