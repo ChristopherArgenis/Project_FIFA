@@ -36,22 +36,25 @@ def anterior_jugador():
         st.session_state['jugador_actual_index'] = st.session_state['limit'] - 1  # Último jugador
 
 def formato(valor, is_wage):
-    valor_numerico = str(int(valor * 52)) if is_wage else str(int(valor))
-    match len(valor_numerico):
-        case 9:
-            return f"{valor_numerico[:3]} M"
-        case 8:
-            return f"{valor_numerico[:2]} M"
-        case 7:
-            return f"{valor_numerico[0]} M"
-        case 6:
-            return f"{valor_numerico[:3]} mil"
-        case 5:
-            return f"{valor_numerico[:2]} mil"
-        case 4:
-            return f"{valor_numerico[0]} mil"
-        case _:
-            return valor_numerico
+    if pd.isna(valor):
+        return " "
+    else:
+        valor_numerico = str(int(valor * 52)) if is_wage else str(int(valor))
+        match len(valor_numerico):
+            case 9:
+                return f"{valor_numerico[:3]} M"
+            case 8:
+                return f"{valor_numerico[:2]} M"
+            case 7:
+                return f"{valor_numerico[0]} M"
+            case 6:
+                return f"{valor_numerico[:3]} mil"
+            case 5:
+                return f"{valor_numerico[:2]} mil"
+            case 4:
+                return f"{valor_numerico[0]} mil"
+            case _:
+                return valor_numerico
 
 def is_nulo(valor, texto_si_nulo=" "):
     if pd.isna(valor):
