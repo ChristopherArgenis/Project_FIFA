@@ -94,10 +94,13 @@ def metricasJugador(player):
     col1, col2, col3 = st.columns(3)
     with col1:
         st.metric("Tiro", value=is_nulo(player["shooting"]))
+        st.metric("Reaccion", value=is_nulo(player["movement_reactions"]))
     with col2:
         st.metric("Pase", value=is_nulo(player["passing"]))
+        st.metric("Agilidad", value=is_nulo(player["movement_agility"]))
     with col3:
         st.metric("Defensa", value=is_nulo(player["defending"]))
+        st.metric("Salto", value=is_nulo(player["power_jumping"]))
     st.divider()
     st.button("Siguiente Jugador", on_click=siguiente_jugador)
 
