@@ -78,6 +78,7 @@ elif seccion == "Jugador":
         datosJugador(player)
     with col2:
         metricasJugador(player)
+    st.divider()
     metricas_avanzadas_jugador(player)
 
 elif seccion == "Comparador":
