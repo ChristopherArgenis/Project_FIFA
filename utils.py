@@ -282,7 +282,7 @@ def mostrar_tops(df):
                     st.image(jugador["player_face_url"], width=300)
                 with col2:
                     st.subheader(jugador["long_name"])
-                    st.caption(f"{jugador['club_name']} | {jugador['nationality_name']}")
+                    st.caption(f"{jugador['nationality_name']} | {jugador['club_name']} | {jugador['club_position']}")
                     st.metric(label=metrica_traducida, value=valor_mostrar)
 
 def cambiar_jugador(delta):
