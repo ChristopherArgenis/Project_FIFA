@@ -1,5 +1,5 @@
 import streamlit as st
-from utils import cargar_datos, obtener_clubes_y_nacionalidades, datosJugador, metricasJugador
+from utils import cargar_datos, obtener_clubes_y_nacionalidades, datosJugador, metricasJugador, metricas_avanzadas_jugador
 
 st.set_page_config(page_title="FIFA App", page_icon="⚽")
 
@@ -77,6 +77,7 @@ elif seccion == "Jugador":
         datosJugador(player)
     with col2:
         metricasJugador(player)
+    metricas_avanzadas_jugador(player)
 
 elif seccion == "Comparador":
     st.title("🔍 Comparador de Jugadores")

@@ -56,5 +56,32 @@ def metricasJugador(player):
     potential.metric("Nivel Físico", value=is_nulo(player["physic"]))
     st.button("Siguiente Jugador", on_click=lambda: cambiar_jugador(1))
 
+def metricas_avanzadas_jugador(player):
+    st.subheader("📊 Métricas Avanzadas")
+
+    metricas = [
+        "overall", "potential", "pace", "shooting", 
+        "passing", "dribbling", "defending", "physic"
+    ]
+    habilidades = [
+        "skill_dribbling", "skill_curve", "skill_ball_control",
+        "movement_agility", "movement_reactions", 
+        "power_shot_power", "power_jumping"
+    ]
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown("**🧠 Métricas Generales**")
+        for m in metricas:
+            valor = is_nulo(player.get(m), texto_si_nulo="No disponible")
+            st.metric(label=m.replace("_", " ").capitalize(), value=valor)
+
+    with col2:
+        st.markdown("**🎯 Habilidades Técnicas**")
+        for h in habilidades:
+            valor = is_nulo(player.get(h), texto_si_nulo="No disponible")
+            st.metric(label=h.replace("_", " ").capitalize(), value=valor)
+
 def cambiar_jugador(delta):
     st.session_state['jugador_actual_index'] = (st.session_state['jugador_actual_index'] + delta) % st.session_state['limit']
