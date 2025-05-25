@@ -9,6 +9,12 @@ import pandas as pd
 def cargar_datos(year):
     return pd.read_csv(f"df_players_{year[2:]}.csv")
 
+@st.cache_data
+def obtener_clubes_y_nacionalidades(df):
+    clubes = sorted(df["club_name"].dropna().unique())
+    nacionalidades = sorted(df["nationality_name"].dropna().unique())
+    return clubes, nacionalidades
+
 # Header
 st.title("Panel de Jugadores de la FIFA ⚽")
 
@@ -114,13 +120,10 @@ def Jugador(df, indice_actual):
         st.session_state['club_anterior'] = "Todos"
     if 'nacion_anterior' not in st.session_state:
         st.session_state['nacion_anterior'] = "Todos"
-    
-    # 📌 Paso 1: Filtro por Club
-    clubes_disponibles = sorted(df["club_name"].dropna().unique())
-    club_seleccionado = st.selectbox("Filtrar por equipo:", options=["Todos"] + clubes_disponibles)
 
-    # Filtro por Nacionalidad
-    nacionalidades_disponibles = sorted(df["nationality_name"].dropna().unique())
+    clubes_disponibles, nacionalidades_disponibles = obtener_clubes_y_nacionalidades(df)
+    
+    club_seleccionado = st.selectbox("Filtrar por equipo:", options=["Todos"] + clubes_disponibles)
     nacionalidad_seleccionada = st.selectbox("Filtrar por nacionalidad:", options=["Todos"] + nacionalidades_disponibles)
     
     if club_seleccionado != st.session_state['club_anterior']:
