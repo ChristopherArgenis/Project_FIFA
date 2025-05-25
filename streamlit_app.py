@@ -90,6 +90,7 @@ elif seccion == "Jugador":
 elif seccion == "Comparador":
     st.subheader("Comparador de Jugadores")
 
+    # Filtrar por Año el DataFrame
     years = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
     year = st.selectbox("Selecciona un año:", years)
 
