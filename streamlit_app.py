@@ -37,8 +37,9 @@ elif seccion == "Jugador":
         st.session_state['limit'] = len(df)
 
     # Filtros
-    club = st.selectbox("Filtrar por club:", ["Todos"] + clubes_disponibles)
-    nacion = st.selectbox("Filtrar por nacionalidad:", ["Todos"] + nacionalidades_disponibles)
+    filter1, filter2 = st.columns(2)
+    club = filter1.selectbox("Filtrar por club:", ["Todos"] + clubes_disponibles)
+    nacion = filter2.selectbox("Filtrar por nacionalidad:", ["Todos"] + nacionalidades_disponibles)
 
     if club != "Todos":
         df = df[df["club_name"] == club]
