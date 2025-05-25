@@ -93,15 +93,14 @@ elif seccion == "Comparador":
     # Filtrar por Año el DataFrame
     years = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
     year = st.selectbox("Selecciona un año:", years)
-
     df = cargar_datos(year)
 
     nombre_1 = st.text_input("Jugador 1")
     nombre_2 = st.text_input("Jugador 2")
-
     jugador_1 = df[df["long_name"].str.contains(nombre_1, case=False, na=False)].iloc[0] if nombre_1 and not df[df["long_name"].str.contains(nombre_1, case=False, na=False)].empty else None
     jugador_2 = df[df["long_name"].str.contains(nombre_2, case=False, na=False)].iloc[0] if nombre_2 and not df[df["long_name"].str.contains(nombre_2, case=False, na=False)].empty else None
 
+    
     if jugador_1 is not None and jugador_2 is not None:
         comparar_metricas(jugador_1, jugador_2)
     else:

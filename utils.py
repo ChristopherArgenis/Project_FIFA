@@ -123,7 +123,7 @@ def comparar_metricas(j1, j2):
         mostrar_jugador_comparador(j2)
 
     st.markdown("---")
-    st.markdown("### Métricas Generales")
+    st.markdown("### Métricas Generales 🧠")
 
     for metrica in metricas_generales:
         v1 = int(j1[metrica])
@@ -138,7 +138,7 @@ def comparar_metricas(j1, j2):
             st.metric(label=metrica, value=int(v2), delta=f"{delta2:+}", delta_color="normal")
 
     st.markdown("---")
-    st.markdown("### Habilidades Técnicas")
+    st.markdown("### Habilidades Técnicas 🎯")
 
     for metrica in metricas_habilidades:
         v1 = int(j1[metrica])
