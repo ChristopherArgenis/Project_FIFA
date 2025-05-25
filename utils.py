@@ -193,7 +193,8 @@ def comparar_metricas(j1, j2):
 # En tu archivo principal de Streamlit, dentro de la pestaña "Tops":
 
 def mostrar_tops(df):
-    st.header("🏆 Mejores Jugadores por Métrica")
+    st.divider()
+    st.subheader("🏆 Mejores Jugadores por Métrica")
 
     # --- Filtros ---
     col1, col2, col3 = st.columns(3)

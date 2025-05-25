@@ -109,7 +109,7 @@ elif seccion == "Comparador":
 
 elif seccion == "Tops":
     st.title("🏆 Top Jugadores")
-    st.info("Ranking de mejores jugadores por posición o atributo.")
+    st.caption("Mejores Jugadores por Métrica.")
 
     # Filtrar por Año el DataFrame
     years = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
