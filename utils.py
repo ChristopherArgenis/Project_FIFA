@@ -247,11 +247,23 @@ def mostrar_tops(df):
     df_top = df_top[df_top[metrica_seleccionada].notna()]
     df_top = df_top.sort_values(by=metrica_seleccionada, ascending=False).head(10)
 
+    # Determinar si se debe aplicar formato
+    aplicar_formato = metrica_seleccionada in ["value_eur", "wage_eur"]
+    is_wage = metrica_seleccionada == "wage_eur"
+
     # Visualización seleccionada
     if vista == "Tabla":
         st.subheader("📋 Tabla del Top 10")
-        df_tabla = df_top[["long_name", "club_name", "nationality_name", metrica_seleccionada]]
-        df_tabla.columns = ["Nombre", "Club", "Nacionalidad", metrica_traducida]
+        valores = [
+            formato(valor, is_wage) if aplicar_formato else int(valor)
+            for valor in df_top[metrica_seleccionada]
+        ]
+        df_tabla = pd.DataFrame({
+            "Nombre": df_top["long_name"],
+            "Club": df_top["club_name"],
+            "Nacionalidad": df_top["nationality_name"],
+            metrica_traducida: valores
+        })
         st.dataframe(df_tabla, use_container_width=True)
     else:
         st.subheader("📸 Tarjetas de Jugadores")
