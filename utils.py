@@ -111,9 +111,26 @@ def mostrar_jugador_comparador(player):
     st.caption(player["short_name"])
 
 def comparar_metricas(j1, j2):
-    metricas_generales = ["overall", "potential", "pace", "shooting", "passing", "dribbling", "defending", "physic"]
+    metricas_generales = ["overall", "potential", "pace", "shooting", 
+                          "passing", "dribbling", "defending", "physic"]
     metricas_habilidades = ["skill_dribbling", "skill_curve", "skill_ball_control",
                             "movement_agility", "movement_reactions", "power_shot_power", "power_jumping"]
+    traduccion = {
+    "overall": "General",
+    "potential": "Potencial",
+    "pace": "Ritmo",
+    "shooting": "Tiro",
+    "passing": "Pase",
+    "dribbling": "Regate",
+    "defending": "Defensa",
+    "physic": "Físico",
+    "skill_dribbling": "Regate (Habilidad)",
+    "skill_curve": "Efecto",
+    "skill_ball_control": "Control de balón",
+    "movement_agility": "Agilidad",
+    "movement_reactions": "Reacciones",
+    "power_shot_power": "Potencia de tiro",
+    "power_jumping": "Salto" }
 
     col1, col2 = st.columns(2)
 
@@ -131,19 +148,21 @@ def comparar_metricas(j1, j2):
 
         col1, col2 = st.columns(2)
 
+        label_es = traduccion.get(metrica, metrica)
+
         if pd.notna(v1) and pd.notna(v2):
             delta1 = int(v1) - int(v2)
             delta2 = int(v2) - int(v1)
 
             with col1:
-                st.metric(label=metrica, value=int(v1), delta=f"{delta1:+}", delta_color="normal")
+                st.metric(label=label_es, value=int(v1), delta=f"{delta1:+}", delta_color="normal")
             with col2:
-                st.metric(label=metrica, value=int(v2), delta=f"{delta2:+}", delta_color="normal")
+                st.metric(label=label_es, value=int(v2), delta=f"{delta2:+}", delta_color="normal")
         else:
             with col1:
-                st.metric(label=metrica, value="No disponible")
+                st.metric(label=label_es, value="No aplica")
             with col2:
-                st.metric(label=metrica, value="No disponible")
+                st.metric(label=label_es, value="No aplica")
 
     st.markdown("---")
     st.markdown("### Habilidades Técnicas 🎯")
@@ -154,19 +173,21 @@ def comparar_metricas(j1, j2):
 
         col1, col2 = st.columns(2)
 
+        label_es = traduccion.get(metrica, metrica)
+
         if pd.notna(v1) and pd.notna(v2):
             delta1 = int(v1) - int(v2)
             delta2 = int(v2) - int(v1)
 
             with col1:
-                st.metric(label=metrica, value=int(v1), delta=f"{delta1:+}", delta_color="normal")
+                st.metric(label=label_es, value=int(v1), delta=f"{delta1:+}", delta_color="normal")
             with col2:
-                st.metric(label=metrica, value=int(v2), delta=f"{delta2:+}", delta_color="normal")
+                st.metric(label=label_es, value=int(v2), delta=f"{delta2:+}", delta_color="normal")
         else:
             with col1:
-                st.metric(label=metrica, value="No disponible")
+                st.metric(label=label_es, value="No aplica")
             with col2:
-                st.metric(label=metrica, value="No disponible")
+                st.metric(label=label_es, value="No aplica")
 
 def cambiar_jugador(delta):
     st.session_state['jugador_actual_index'] = (st.session_state['jugador_actual_index'] + delta) % st.session_state['limit']
