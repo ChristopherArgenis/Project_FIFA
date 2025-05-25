@@ -199,12 +199,13 @@ def mostrar_tops(df):
     # --- Filtros ---
     col1, col2, col3 = st.columns(3)
 
+    clubes, nacionalidades = obtener_clubes_y_nacionalidades(df)
     with col1:
-        nacionalidad = st.selectbox("Filtrar por Nacionalidad", ["Todas"] + sorted(df["nationality_name"].dropna().unique()))
+        nacionalidad = st.selectbox("Filtrar por Nacionalidad", ["Todas"] + nacionalidades)
     with col2:
         posicion = st.selectbox("Filtrar por Posición", ["Todas"] + sorted(df["club_position"].dropna().unique()))
     with col3:
-        club = st.selectbox("Filtrar por Club", ["Todos"] + sorted(df["club_name"].dropna().unique()))
+        club = st.selectbox("Filtrar por Club", ["Todos"] + clubes)
 
     if nacionalidad != "Todas":
         df = df[df["nationality_name"] == nacionalidad]
