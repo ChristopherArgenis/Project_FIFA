@@ -108,19 +108,39 @@ def metricasJugador(player):
     st.button("Siguiente Jugador", on_click=siguiente_jugador)
 
 def Jugador(df, indice_actual):
-    search = st.text_input("Buscar jugadores:")
-    if search:
-        player = df[df["long_name"].str.contains(search, case=False, na=False) | df["short_name"].str.contains(search, case=False, na=False)]
-        if not player.empty:
-            player = player.iloc[0]
+    st.subheader("🎯 Filtro y Búsqueda de Jugadores")
+
+    # 📌 Paso 1: Filtro por Club
+    clubes_disponibles = sorted(df["club_name"].dropna().unique())
+    club_seleccionado = st.selectbox("Filtrar por equipo:", options=["Todos"] + clubes_disponibles)
+
+    if club_seleccionado != "Todos":
+        df = df[df["club_name"] == club_seleccionado]
+
+    # 📌 Paso 2: Buscador por nombre o alias dentro del club filtrado
+    busqueda = st.text_input("🔍 Buscar jugador por nombre o alias:")
+
+    if busqueda:
+        coincidencias = df[
+            df["long_name"].str.contains(busqueda, case=False, na=False) |
+            df["short_name"].str.contains(busqueda, case=False, na=False)
+        ]
+
+        if not coincidencias.empty:
+            player = coincidencias.iloc[0]
             st.success(f"Jugador encontrado: {player['long_name']}")
         else:
-            st.warning("❌ No se encontró ningún jugador con ese nombre o alias.")
+            st.warning("❌ No se encontró ningún jugador con ese nombre o alias en este equipo.")
             return
     else:
-        player = df.iloc[indice_actual]       
-        indice = f"Indice de Jugador: {indice_actual}"
-        st.badge(indice)
+        # Si no se busca nada, usa el jugador actual del DataFrame ya filtrado por club
+        if df.empty:
+            st.warning("❌ No hay jugadores disponibles en este equipo.")
+            return
+        player = df.iloc[indice_actual % len(df)]
+        st.badge(f"Indice de Jugador: {indice_actual % len(df)}")
+
+    # 📌 Paso 3: Mostrar los datos del jugador
     data_player, metric_player = st.columns(2)
     with data_player:
         datosJugador(player)
