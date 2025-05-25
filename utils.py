@@ -58,9 +58,9 @@ def metricas_avanzadas_jugador(player):
 
     # --- Métricas Generales ---
     with col_m1:
+        st.markdown("**🧠 Métricas Generales**")
         subcol1, subcol2 = st.columns(2)
         with subcol1:
-            st.markdown("**🧠 Métricas Generales**")
             st.metric("Puntuacion", value=is_nulo(player.get("overall"), "No disponible"))
             st.metric("Potential", value=is_nulo(player.get("potential"), "No disponible"))
             st.metric("Velocidad", value=is_nulo(player.get("pace"), "No disponible"))
@@ -73,9 +73,9 @@ def metricas_avanzadas_jugador(player):
 
     # --- Habilidades Técnicas ---
     with col_m2:
+        st.markdown("**🎯 Habilidades Técnicas**")
         subcol3, subcol4 = st.columns(2)
         with subcol3:
-            st.markdown("**🎯 Habilidades Técnicas**")
             st.metric("Dribbling", value=player.get("skill_dribbling"))
             st.metric("Skill Curve", value=player.get("skill_curve"))
             st.metric("Control de Balon", value=player.get("skill_ball_control"))
