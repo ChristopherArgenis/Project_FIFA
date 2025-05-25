@@ -190,7 +190,6 @@ def comparar_metricas(j1, j2):
                 st.metric(label=label_es, value="No aplica")
 
 # Tops
-# En tu archivo principal de Streamlit, dentro de la pestaña "Tops":
 
 def mostrar_tops(df):
     st.divider()
@@ -273,6 +272,8 @@ def mostrar_tops(df):
     else:
         st.subheader("📸 Tarjetas de Jugadores")
         for _, jugador in df_top.iterrows():
+            valor = jugador[metrica_seleccionada]
+            valor_mostrar = formato(valor, is_wage) if aplicar_formato else int(valor)
             with st.container():
                 col1, col2 = st.columns([1, 3])
                 with col1:
@@ -280,7 +281,7 @@ def mostrar_tops(df):
                 with col2:
                     st.subheader(jugador["long_name"])
                     st.caption(f"{jugador['club_name']} | {jugador['nationality_name']}")
-                    st.metric(label=metrica_traducida, value=int(jugador[metrica_seleccionada]))
+                    st.metric(label=metrica_traducida, value=valor_mostrar)
 
 def cambiar_jugador(delta):
     st.session_state['jugador_actual_index'] = (st.session_state['jugador_actual_index'] + delta) % st.session_state['limit']
