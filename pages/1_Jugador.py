@@ -1,6 +1,57 @@
 import streamlit as st
+from utils import cargar_datos, obtener_clubes_y_nacionalidades, datosJugador, metricasJugador
 
 st.title("🎮 Jugador Individual")
 
 years = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
 year = st.selectbox("Selecciona un año:", years)
+
+df = cargar_datos(year)
+clubes_disponibles, nacionalidades_disponibles = obtener_clubes_y_nacionalidades(df)
+
+if 'jugador_actual_index' not in st.session_state:
+    st.session_state['jugador_actual_index'] = 0
+if 'limit' not in st.session_state or st.session_state['limit'] != len(df):
+    st.session_state['limit'] = len(df)
+
+# Filtros
+club = st.selectbox("Filtrar por club:", ["Todos"] + clubes_disponibles)
+nacion = st.selectbox("Filtrar por nacionalidad:", ["Todos"] + nacionalidades_disponibles)
+
+if club != "Todos":
+    df = df[df["club_name"] == club]
+if nacion != "Todos":
+    df = df[df["nationality_name"] == nacion]
+
+# Reiniciar índice si cambian los filtros
+if 'club_anterior' not in st.session_state: st.session_state['club_anterior'] = ""
+if 'nacion_anterior' not in st.session_state: st.session_state['nacion_anterior'] = ""
+if club != st.session_state['club_anterior'] or nacion != st.session_state['nacion_anterior']:
+    st.session_state['jugador_actual_index'] = 0
+    st.session_state['club_anterior'] = club
+    st.session_state['nacion_anterior'] = nacion
+
+# Búsqueda
+busqueda = st.text_input("🔍 Buscar jugador por nombre o alias:")
+if busqueda:
+    resultados = df[df["long_name"].str.contains(busqueda, case=False, na=False) |
+                    df["short_name"].str.contains(busqueda, case=False, na=False)]
+    if not resultados.empty:
+        player = resultados.iloc[0]
+        st.success(f"Jugador encontrado: {player['long_name']}")
+    else:
+        st.warning("No se encontró ningún jugador.")
+        st.stop()
+else:
+    if df.empty:
+        st.warning("No hay jugadores para mostrar.")
+        st.stop()
+    player = df.iloc[st.session_state['jugador_actual_index'] % len(df)]
+    st.badge(f"Índice actual: {st.session_state['jugador_actual_index'] % len(df)}")
+
+# Mostrar
+col1, col2 = st.columns(2)
+with col1:
+    datosJugador(player)
+with col2:
+    metricasJugador(player)
