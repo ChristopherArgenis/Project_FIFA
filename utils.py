@@ -72,14 +72,14 @@ def metricas_avanzadas_jugador(player):
         st.markdown("**🧠 Métricas Generales**")
         subcol1, subcol2 = st.columns(2)
         with subcol1:
-            st.metric("Puntuacion", value=is_nulo(player.get("overall"), "No disponible"))
+            st.metric("General", value=is_nulo(player.get("overall"), "No disponible"))
             st.metric("Potential", value=is_nulo(player.get("potential"), "No disponible"))
-            st.metric("Velocidad", value=is_nulo(player.get("pace"), "No disponible"))
+            st.metric("Ritmo", value=is_nulo(player.get("pace"), "No disponible"))
             st.metric("Tiro", value=is_nulo(player.get("shooting"), "No disponible"))
         with subcol2:
             st.metric("Fisico", value=is_nulo(player.get("physic"), "No disponible"))
             st.metric("Pase", value=is_nulo(player.get("passing"), "No disponible"))
-            st.metric("Dribbling", value=is_nulo(player.get("dribbling"), "No disponible"))
+            st.metric("Regate", value=is_nulo(player.get("dribbling"), "No disponible"))
             st.metric("Defensa", value=is_nulo(player.get("defending"), "No disponible"))
 
     # --- Habilidades Técnicas ---
@@ -88,13 +88,13 @@ def metricas_avanzadas_jugador(player):
         subcol3, subcol4 = st.columns(2)
         with subcol3:
             st.metric("Dribbling", value=player.get("skill_dribbling"))
-            st.metric("Skill Curve", value=player.get("skill_curve"))
-            st.metric("Control de Balon", value=player.get("skill_ball_control"))
+            st.metric("Efecto", value=player.get("skill_curve"))
+            st.metric("Control de Balón", value=player.get("skill_ball_control"))
             st.metric("Agilidad", value=player.get("movement_agility"))
         with subcol4:
-            st.metric("Reaccion", value=player.get("movement_reactions"))
-            st.metric("Poder de Tiro", value=player.get("power_shot_power"))
-            st.metric("Poder de Salto", value=player.get("power_jumping"))
+            st.metric("Reacciones", value=player.get("movement_reactions"))
+            st.metric("Potencia de Tiro", value=player.get("power_shot_power"))
+            st.metric("Salto", value=player.get("power_jumping"))
 
 # Comparador
 
