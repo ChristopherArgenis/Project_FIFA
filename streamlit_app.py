@@ -110,9 +110,8 @@ def metricasJugador(player):
 def Jugador(df, indice_actual):
     search = st.text_input("Buscar jugadores:")
     if search:
-        player = df[ df["long_name"].str.contains(search, case=False, na=False) |
-                     df["short_name"].str.contains(search, case=False, na=False)
-                   ][0]
+        player = df[df["long_name"].str.contains(search, case=False, na=False) |
+                     df["short_name"].str.contains(search, case=False, na=False)].iloc[0]
     else:
         player = df.iloc[indice_actual]       
     indice = f"Indice de Jugador: {indice_actual}"
