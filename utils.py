@@ -123,35 +123,50 @@ def comparar_metricas(j1, j2):
         mostrar_jugador_comparador(j2)
 
     st.markdown("---")
-    st.markdown("### Métricas Generales 🧠")
+    st.markdown("### Métricas Generales")
 
     for metrica in metricas_generales:
-        v1 = int(j1[metrica])
-        v2 = int(j2[metrica])
-        delta1 = v1 - v2
-        delta2 = v2 - v1
+        v1 = j1[metrica]
+        v2 = j2[metrica]
 
         col1, col2 = st.columns(2)
-        with col1:
-            st.metric(label=metrica, value=int(v1), delta=f"{delta1:+}", delta_color="normal")
-        with col2:
-            st.metric(label=metrica, value=int(v2), delta=f"{delta2:+}", delta_color="normal")
+
+        if pd.notna(v1) and pd.notna(v2):
+            delta1 = int(v1) - int(v2)
+            delta2 = int(v2) - int(v1)
+
+            with col1:
+                st.metric(label=metrica, value=int(v1), delta=f"{delta1:+}", delta_color="normal")
+            with col2:
+                st.metric(label=metrica, value=int(v2), delta=f"{delta2:+}", delta_color="normal")
+        else:
+            with col1:
+                st.metric(label=metrica, value="No disponible")
+            with col2:
+                st.metric(label=metrica, value="No disponible")
 
     st.markdown("---")
-    st.markdown("### Habilidades Técnicas 🎯")
+    st.markdown("### Habilidades Técnicas")
 
     for metrica in metricas_habilidades:
-        v1 = int(j1[metrica])
-        v2 = int(j2[metrica])
-
-        delta1 = v1 - v2
-        delta2 = v2 - v1
+        v1 = j1[metrica]
+        v2 = j2[metrica]
 
         col1, col2 = st.columns(2)
-        with col1:
-            st.metric(label=metrica, value=int(v1), delta=f"{delta1:+}", delta_color="normal")
-        with col2:
-            st.metric(label=metrica, value=int(v2), delta=f"{delta2:+}", delta_color="normal")
+
+        if pd.notna(v1) and pd.notna(v2):
+            delta1 = int(v1) - int(v2)
+            delta2 = int(v2) - int(v1)
+
+            with col1:
+                st.metric(label=metrica, value=int(v1), delta=f"{delta1:+}", delta_color="normal")
+            with col2:
+                st.metric(label=metrica, value=int(v2), delta=f"{delta2:+}", delta_color="normal")
+        else:
+            with col1:
+                st.metric(label=metrica, value="No disponible")
+            with col2:
+                st.metric(label=metrica, value="No disponible")
 
 def cambiar_jugador(delta):
     st.session_state['jugador_actual_index'] = (st.session_state['jugador_actual_index'] + delta) % st.session_state['limit']
