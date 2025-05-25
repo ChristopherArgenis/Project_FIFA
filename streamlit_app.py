@@ -14,8 +14,5 @@ Usa el menú de la izquierda para navegar entre secciones:
 - Gráficos interactivos
 """)
 
-def page_2():
-    st.title("Page 2")
-
-pg = st.navigation(["1_Jugador.py", page_2])
-pg.run()
+st.page_link("streamlit_app.py", label="Principal", icon="🏠")
+st.page_link("pages/Jugador.py", label="Jugador", icon="🎮")
