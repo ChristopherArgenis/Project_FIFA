@@ -49,7 +49,6 @@ def datosJugador(player):
     col1.metric("Edad", value=player["age"])
     col2.metric("Altura (cm)", value=player["height_cm"])
     col3.metric("Peso (kg)", value=player["weight_kg"])
-    st.button("Anterior Jugador", on_click=lambda: cambiar_jugador(-1))
 
 def metricasJugador(player):
     st.metric("Nombre del Club", value=player["club_name"])
@@ -60,7 +59,6 @@ def metricasJugador(player):
     col2.metric("Número", value=int(player["club_jersey_number"]))
     col2.image(player["club_logo_url"], width=75)
     col2.metric("Pie Preferente", value=traducir_pie_preferente(player["preferred_foot"]))
-    st.button("Siguiente Jugador", on_click=lambda: cambiar_jugador(1))
 
 def metricas_avanzadas_jugador(player):
     st.subheader("📊 Métricas Avanzadas")
@@ -81,7 +79,7 @@ def metricas_avanzadas_jugador(player):
             st.metric("Pase", value=is_nulo(player.get("passing"), " "))
             st.metric("Regate", value=is_nulo(player.get("dribbling"), " "))
             st.metric("Defensa", value=is_nulo(player.get("defending"), " "))
-
+    st.button("Anterior Jugador", on_click=lambda: cambiar_jugador(-1))
     # --- Habilidades Técnicas ---
     with col_m2:
         st.markdown("**🎯 Habilidades Técnicas**")
@@ -95,6 +93,7 @@ def metricas_avanzadas_jugador(player):
             st.metric("Reacciones", value=player.get("movement_reactions"))
             st.metric("Potencia de Tiro", value=player.get("power_shot_power"))
             st.metric("Salto", value=player.get("power_jumping"))
+    st.button("Siguiente Jugador", on_click=lambda: cambiar_jugador(1))
 
 # Comparador
 
