@@ -89,7 +89,7 @@ elif seccion == "Jugador":
 
 elif seccion == "Comparador":
     st.subheader("🔍 Comparador de Jugadores")
-    st.info("Aquí podrás comparar varios jugadores entre sí.")
+    st.caption("Aquí podrás comparar varios jugadores entre sí.")
 
     # Filtrar por Año el DataFrame
     years = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
