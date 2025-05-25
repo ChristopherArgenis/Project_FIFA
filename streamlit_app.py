@@ -114,8 +114,8 @@ def Jugador(df, indice_actual):
                      df["short_name"].str.contains(search, case=False, na=False)].iloc[0]
     else:
         player = df.iloc[indice_actual]       
-    indice = f"Indice de Jugador: {indice_actual}"
-    st.badge(indice)
+        indice = f"Indice de Jugador: {indice_actual}"
+        st.badge(indice)
     data_player, metric_player = st.columns(2)
     with data_player:
         datosJugador(player)
