@@ -77,3 +77,19 @@ elif seccion == "Jugador":
         datosJugador(player)
     with col2:
         metricasJugador(player)
+
+elif seccion == "Comparador":
+    st.title("🔍 Comparador de Jugadores")
+    st.info("Aquí podrás comparar varios jugadores entre sí (en construcción).")
+
+elif seccion == "Tops":
+    st.title("🏆 Top Jugadores")
+    st.info("Ranking de mejores jugadores por posición o atributo.")
+
+elif seccion == "Preguntas":
+    st.title("❓ Preguntas Frecuentes")
+    st.info("Respuestas automáticas basadas en el dataset.")
+
+elif seccion == "Gráficos":
+    st.title("📊 Gráficos Interactivos")
+    st.info("Visualizaciones interactivas de estadísticas de jugadores.")
