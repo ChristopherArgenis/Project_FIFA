@@ -239,29 +239,27 @@ def mostrar_tops(df):
     metrica_traducida = st.selectbox("Selecciona una métrica para ver el Top", list(metricas.values()))
     metrica_seleccionada = [k for k, v in metricas.items() if v == metrica_traducida][0]
 
-    # --- Preparar Top ---
+    # Opción de visualización
+    vista = st.radio("¿Cómo deseas ver el Top?", ["Tarjetas", "Tabla"], horizontal=True)
+
+    # Preparar top
     df_top = df.copy()
     df_top = df_top[df_top[metrica_seleccionada].notna()]
     df_top = df_top.sort_values(by=metrica_seleccionada, ascending=False).head(10)
 
-    # --- Visualización adaptativa ---
-    if metrica_seleccionada in ["wage_eur", "value_eur", "height_cm"]:
-        # Usar tabla
+    # Visualización seleccionada
+    if vista == "Tarjetas":
         st.subheader("📋 Tabla del Top 10")
-        if metrica_seleccionada == "wage_eur":
-            df_tabla = df_top[["long_name", "club_name", "nationality_name", formato(metrica_seleccionada, True)]]
-        else:
-            df_tabla = df_top[["long_name", "club_name", "nationality_name", formato(metrica_seleccionada, False)]]
+        df_tabla = df_top[["long_name", "club_name", "nationality_name", metrica_seleccionada]]
         df_tabla.columns = ["Nombre", "Club", "Nacionalidad", metrica_traducida]
         st.dataframe(df_tabla, use_container_width=True)
     else:
-        # Usar tarjetas
         st.subheader("📸 Tarjetas de Jugadores")
         for _, jugador in df_top.iterrows():
             with st.container():
                 col1, col2 = st.columns([1, 3])
                 with col1:
-                    st.image(jugador["player_face_url"], width=300)
+                    st.image(jugador["player_face_url"], width=80)
                 with col2:
                     st.subheader(jugador["long_name"])
                     st.caption(f"{jugador['club_name']} | {jugador['nationality_name']}")
