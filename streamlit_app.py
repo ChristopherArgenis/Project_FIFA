@@ -72,8 +72,8 @@ elif seccion == "Jugador":
         st.badge(f"Índice actual: {st.session_state['jugador_actual_index'] % len(df)}")
 
     # Mostrar
-    col1, col2 = st.columns(2)
     st.image(player["player_face_url"], width=300, caption="Fotografia del Jugador")
+    col1, col2 = st.columns(2)
     with col1:
         datosJugador(player)
     with col2:
