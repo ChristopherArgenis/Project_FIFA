@@ -50,4 +50,5 @@ def is_nulo(valor, texto_si_nulo=" "):
     except:
         return valor
     
-nulls = ["value_eur", "wage_eur", "club_name", "club_position", "club_jersey_number", "pace", "passing", "dribbling", "defending", "physic", "club_logo_url"]
+nulls_player = ["value_eur", "wage_eur", "club_name", "club_position", "club_jersey_number", "club_logo_url"]
+nulls_metric = ["pace", "passing", "dribbling", "defending", "physic"]

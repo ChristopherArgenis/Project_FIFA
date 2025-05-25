@@ -54,40 +54,37 @@ def metricasJugador(player):
 def metricas_avanzadas_jugador(player):
     st.subheader("📊 Métricas Avanzadas")
 
-    metricas = [
-        "overall", "potential", "pace", "shooting", 
-        "passing", "dribbling", "defending", "physic"
-    ]
-    habilidades = [
-        "skill_dribbling", "skill_curve", "skill_ball_control",
-        "movement_agility", "movement_reactions", 
-        "power_shot_power", "power_jumping"
-    ]
-
     col_m1, col_m2 = st.columns(2)
+
+    # --- Métricas Generales ---
     with col_m1:
         subcol1, subcol2 = st.columns(2)
         with subcol1:
             st.markdown("**🧠 Métricas Generales**")
-            for m in metricas[:len(metricas)//2]:
-                valor = is_nulo(player.get(m), texto_si_nulo="No disponible")
-                st.metric(label=m.replace("_", " ").capitalize(), value=valor)
+            st.metric("Puntuacion", value=is_nulo(player.get("overall"), "No disponible"))
+            st.metric("Potential", value=is_nulo(player.get("potential"), "No disponible"))
+            st.metric("Velocidad", value=is_nulo(player.get("pace"), "No disponible"))
+            st.metric("Tiro", value=is_nulo(player.get("shooting"), "No disponible"))
         with subcol2:
-            for m in metricas[len(metricas)//2:]:
-                valor = is_nulo(player.get(m), texto_si_nulo="No disponible")
-                st.metric(label=m.replace("_", " ").capitalize(), value=valor)
+            st.metric("Fisico", value=is_nulo(player.get("physic"), "No disponible"))
+            st.metric("Pase", value=is_nulo(player.get("passing"), "No disponible"))
+            st.metric("Dribbling", value=is_nulo(player.get("dribbling"), "No disponible"))
+            st.metric("Defensa", value=is_nulo(player.get("defending"), "No disponible"))
 
+    # --- Habilidades Técnicas ---
     with col_m2:
         subcol3, subcol4 = st.columns(2)
         with subcol3:
             st.markdown("**🎯 Habilidades Técnicas**")
-            for h in habilidades[:len(habilidades)//2]:
-                valor = is_nulo(player.get(h), texto_si_nulo="No disponible")
-                st.metric(label=h.replace("_", " ").capitalize(), value=valor)
+            st.metric("Dribbling", value=player.get("skill_dribbling"))
+            st.metric("Skill Curve", value=player.get("skill_curve"))
+            st.metric("Control de Balon", value=player.get("skill_ball_control"))
+            st.metric("Agilidad", value=player.get("movement_agility"))
         with subcol4:
-            for h in habilidades[len(habilidades)//2:]:
-                valor = is_nulo(player.get(h), texto_si_nulo="No disponible")
-                st.metric(label=h.replace("_", " ").capitalize(), value=valor)
+            st.metric("Reaccion", value=player.get("movement_reactions"))
+            st.metric("Poder de Tiro", value=player.get("power_shot_power"))
+            st.metric("Poder de Salto", value=player.get("power_jumping"))
+
 
 
 def cambiar_jugador(delta):
