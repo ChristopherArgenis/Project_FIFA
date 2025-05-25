@@ -242,10 +242,15 @@ def mostrar_tops(df):
     # Opción de visualización
     vista = st.radio("¿Cómo deseas ver el Top?", ["Tarjetas", "Tabla"], horizontal=True)
 
+    # Cantidad (solo si es tabla)
+    cantidad = 10
+    if vista == "Tabla":
+        cantidad = st.selectbox("Cantidad de jugadores a mostrar", [10, 25, 50, 100])
+
     # Preparar top
     df_top = df.copy()
     df_top = df_top[df_top[metrica_seleccionada].notna()]
-    df_top = df_top.sort_values(by=metrica_seleccionada, ascending=False).head(10)
+    df_top = df_top.sort_values(by=metrica_seleccionada, ascending=False).head(cantidad)
 
     # Determinar si se debe aplicar formato
     aplicar_formato = metrica_seleccionada in ["value_eur", "wage_eur"]
