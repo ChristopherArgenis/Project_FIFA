@@ -224,15 +224,15 @@ def mostrar_tops(df):
         "dribbling": "Regate",
         "defending": "Defensa",
         "physic": "Físico",
-        "skill_dribbling": "Habilidad Regate",
+        "skill_dribbling": "Regate",
         "skill_curve": "Curva",
         "skill_ball_control": "Control de Balón",
         "movement_agility": "Agilidad",
         "movement_reactions": "Reacciones",
         "power_shot_power": "Potencia de Tiro",
         "power_jumping": "Salto",
-        "value_eur": "Valuación",
         "wage_eur": "Salario Anual",
+        "value_eur": "Valuación",
         "height_cm": "Altura (cm)"
     }
 
@@ -245,10 +245,13 @@ def mostrar_tops(df):
     df_top = df_top.sort_values(by=metrica_seleccionada, ascending=False).head(10)
 
     # --- Visualización adaptativa ---
-    if metrica_seleccionada in ["value_eur", "wage_eur", "height_cm", "skill_ball_control"]:
+    if metrica_seleccionada in ["wage_eur", "value_eur", "height_cm"]:
         # Usar tabla
         st.subheader("📋 Tabla del Top 10")
-        df_tabla = df_top[["long_name", "club_name", "nationality_name", metrica_seleccionada]]
+        if metrica_seleccionada == "wage_eur":
+            df_tabla = df_top[["long_name", "club_name", "nationality_name", formato(metrica_seleccionada, True)]]
+        else:
+            df_tabla = df_top[["long_name", "club_name", "nationality_name", formato(metrica_seleccionada, False)]]
         df_tabla.columns = ["Nombre", "Club", "Nacionalidad", metrica_traducida]
         st.dataframe(df_tabla, use_container_width=True)
     else:
@@ -258,7 +261,7 @@ def mostrar_tops(df):
             with st.container():
                 col1, col2 = st.columns([1, 3])
                 with col1:
-                    st.image(jugador["player_face_url"], width=80)
+                    st.image(jugador["player_face_url"], width=300)
                 with col2:
                     st.subheader(jugador["long_name"])
                     st.caption(f"{jugador['club_name']} | {jugador['nationality_name']}")
