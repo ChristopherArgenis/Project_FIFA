@@ -107,8 +107,8 @@ elif seccion == "Comparador":
     else:
         st.info("Introduce los nombres de dos jugadores válidos para comparar.")
 
-elif seccion == "Tops":
-    st.title("🏆 Top Jugadores")
+elif seccion == "Top Jugadores":
+    st.title("🏆 Mejores Jugadores por Métrica")
     st.caption("Ranking de Mejores Jugadores por Métrica.")
 
     # Filtrar por Año el DataFrame

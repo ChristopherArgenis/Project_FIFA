@@ -193,7 +193,6 @@ def comparar_metricas(j1, j2):
 
 def mostrar_tops(df):
     st.divider()
-    st.subheader("🏆 Mejores Jugadores por Métrica")
 
     # --- Filtros ---
     col1, col2, col3 = st.columns(3)
