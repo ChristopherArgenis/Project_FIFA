@@ -189,5 +189,78 @@ def comparar_metricas(j1, j2):
             with col2:
                 st.metric(label=label_es, value="No aplica")
 
+# Tops
+# En tu archivo principal de Streamlit, dentro de la pestaña "Tops":
+
+def mostrar_tops(df):
+    st.header("🏆 Mejores Jugadores por Métrica")
+
+    # --- Filtros ---
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        nacionalidad = st.selectbox("Filtrar por Nacionalidad", ["Todas"] + sorted(df["nationality_name"].dropna().unique()))
+    with col2:
+        posicion = st.selectbox("Filtrar por Posición", ["Todas"] + sorted(df["club_position"].dropna().unique()))
+    with col3:
+        club = st.selectbox("Filtrar por Club", ["Todos"] + sorted(df["club_name"].dropna().unique()))
+
+    if nacionalidad != "Todas":
+        df = df[df["nationality_name"] == nacionalidad]
+    if posicion != "Todas":
+        df = df[df["club_position"] == posicion]
+    if club != "Todos":
+        df = df[df["club_name"] == club]
+
+    # --- Métricas disponibles y traducción ---
+    metricas = {
+        "overall": "General",
+        "potential": "Potencial",
+        "pace": "Ritmo",
+        "shooting": "Tiro",
+        "passing": "Pase",
+        "dribbling": "Regate",
+        "defending": "Defensa",
+        "physic": "Físico",
+        "skill_dribbling": "Habilidad Regate",
+        "skill_curve": "Curva",
+        "skill_ball_control": "Control de Balón",
+        "movement_agility": "Agilidad",
+        "movement_reactions": "Reacciones",
+        "power_shot_power": "Potencia de Tiro",
+        "power_jumping": "Salto",
+        "value_eur": "Valuación",
+        "wage_eur": "Salario Anual",
+        "height_cm": "Altura (cm)"
+    }
+
+    metrica_traducida = st.selectbox("Selecciona una métrica para ver el Top", list(metricas.values()))
+    metrica_seleccionada = [k for k, v in metricas.items() if v == metrica_traducida][0]
+
+    # --- Preparar Top ---
+    df_top = df.copy()
+    df_top = df_top[df_top[metrica_seleccionada].notna()]
+    df_top = df_top.sort_values(by=metrica_seleccionada, ascending=False).head(10)
+
+    # --- Visualización adaptativa ---
+    if metrica_seleccionada in ["value_eur", "wage_eur", "height_cm", "skill_ball_control"]:
+        # Usar tabla
+        st.subheader("📋 Tabla del Top 10")
+        df_tabla = df_top[["long_name", "club_name", "nationality_name", metrica_seleccionada]]
+        df_tabla.columns = ["Nombre", "Club", "Nacionalidad", metrica_traducida]
+        st.dataframe(df_tabla, use_container_width=True)
+    else:
+        # Usar tarjetas
+        st.subheader("📸 Tarjetas de Jugadores")
+        for _, jugador in df_top.iterrows():
+            with st.container():
+                col1, col2 = st.columns([1, 3])
+                with col1:
+                    st.image(jugador["player_face_url"], width=80)
+                with col2:
+                    st.subheader(jugador["long_name"])
+                    st.caption(f"{jugador['club_name']} | {jugador['nationality_name']}")
+                    st.metric(label=metrica_traducida, value=int(jugador[metrica_seleccionada]))
+
 def cambiar_jugador(delta):
     st.session_state['jugador_actual_index'] = (st.session_state['jugador_actual_index'] + delta) % st.session_state['limit']

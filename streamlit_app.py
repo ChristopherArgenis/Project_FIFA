@@ -1,5 +1,5 @@
 import streamlit as st
-from utils import cargar_datos, obtener_clubes_y_nacionalidades, datosJugador, metricasJugador, metricas_avanzadas_jugador, comparar_metricas
+from utils import cargar_datos, obtener_clubes_y_nacionalidades, datosJugador, metricasJugador, metricas_avanzadas_jugador, comparar_metricas, mostrar_tops
 
 st.set_page_config(page_title="FIFA App", page_icon="⚽")
 
@@ -110,6 +110,13 @@ elif seccion == "Comparador":
 elif seccion == "Tops":
     st.title("🏆 Top Jugadores")
     st.info("Ranking de mejores jugadores por posición o atributo.")
+
+    # Filtrar por Año el DataFrame
+    years = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
+    year = st.selectbox("Selecciona un año:", years)
+    df = cargar_datos(year)
+
+    mostrar_tops(df)
 
 elif seccion == "Preguntas":
     st.title("❓ Preguntas Frecuentes")
