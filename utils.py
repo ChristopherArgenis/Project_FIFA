@@ -79,7 +79,7 @@ def metricas_avanzadas_jugador(player):
             st.metric("Pase", value=is_nulo(player.get("passing"), " "))
             st.metric("Regate", value=is_nulo(player.get("dribbling"), " "))
             st.metric("Defensa", value=is_nulo(player.get("defending"), " "))
-    st.button("Anterior Jugador", on_click=lambda: cambiar_jugador(-1))
+        st.button("Anterior Jugador", on_click=lambda: cambiar_jugador(-1))
     # --- Habilidades Técnicas ---
     with col_m2:
         st.markdown("**🎯 Habilidades Técnicas**")
@@ -93,7 +93,7 @@ def metricas_avanzadas_jugador(player):
             st.metric("Reacciones", value=player.get("movement_reactions"))
             st.metric("Potencia de Tiro", value=player.get("power_shot_power"))
             st.metric("Salto", value=player.get("power_jumping"))
-    st.button("Siguiente Jugador", on_click=lambda: cambiar_jugador(1))
+        st.button("Siguiente Jugador", on_click=lambda: cambiar_jugador(1))
 
 # Comparador
 
