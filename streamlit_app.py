@@ -5,7 +5,7 @@ st.set_page_config(page_title="FIFA App", page_icon="⚽")
 
 # Sidebar de navegación
 st.sidebar.title("Navegación")
-seccion = st.sidebar.radio("Ir a sección:", ["Inicio", "Jugador", "Comparador", "Tops", "Preguntas", "Gráficos"])
+seccion = st.sidebar.selectbox("Ir a sección:", ["Inicio", "Jugador", "Comparador", "Tops", "Preguntas", "Gráficos"])
 
 # --- Secciones ---
 if seccion == "Inicio":
