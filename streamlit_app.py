@@ -1,5 +1,5 @@
 import streamlit as st
-from utils import cargar_datos, obtener_clubes_y_nacionalidades, datosJugador, metricasJugador, metricas_avanzadas_jugador
+from utils import cargar_datos, obtener_clubes_y_nacionalidades, datosJugador, metricasJugador, metricas_avanzadas_jugador, comparar_metricas
 
 st.set_page_config(page_title="FIFA App", page_icon="⚽")
 
@@ -88,8 +88,23 @@ elif seccion == "Jugador":
     metricas_avanzadas_jugador(player)
 
 elif seccion == "Comparador":
-    st.title("🔍 Comparador de Jugadores")
-    st.info("Aquí podrás comparar varios jugadores entre sí (en construcción).")
+    st.subheader("Comparador de Jugadores")
+
+    years = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
+    year = st.selectbox("Selecciona un año:", years)
+
+    df = cargar_datos(year)
+
+    nombre_1 = st.text_input("Jugador 1")
+    nombre_2 = st.text_input("Jugador 2")
+
+    jugador_1 = df[df["short_name"].str.contains(nombre_1, case=False, na=False)].iloc[0] if nombre_1 and not df[df["short_name"].str.contains(nombre_1, case=False, na=False)].empty else None
+    jugador_2 = df[df["short_name"].str.contains(nombre_2, case=False, na=False)].iloc[0] if nombre_2 and not df[df["short_name"].str.contains(nombre_2, case=False, na=False)].empty else None
+
+    if jugador_1 is not None and jugador_2 is not None:
+        comparar_metricas(jugador_1, jugador_2)
+    else:
+        st.info("Introduce los nombres de dos jugadores válidos para comparar.")
 
 elif seccion == "Tops":
     st.title("🏆 Top Jugadores")

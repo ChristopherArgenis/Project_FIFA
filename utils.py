@@ -38,7 +38,10 @@ def traducir_pie_preferente(valor):
             return "Derecha"
     return "Desconocido"
 
+# Jugador
+
 def datosJugador(player):
+    st.empty()
     st.metric("Nombre Completo", value=player["long_name"])
     st.metric("Alias", value=player["short_name"])
     st.metric("Nacionalidad", value=player["nationality_name"])
@@ -92,6 +95,70 @@ def metricas_avanzadas_jugador(player):
             st.metric("Reaccion", value=player.get("movement_reactions"))
             st.metric("Poder de Tiro", value=player.get("power_shot_power"))
             st.metric("Poder de Salto", value=player.get("power_jumping"))
+
+# Comparador
+
+def flecha_comparacion(val1, val2):
+    if val1 > val2:
+        return "🔼", "green"
+    elif val1 < val2:
+        return "🔽", "red"
+    else:
+        return "⏺", "gray"
+
+def mostrar_jugador_comparador(player):
+    st.markdown(
+        f"""
+        <div style="text-align: center;">
+            <img src="{player['player_face_url']}" width="150">
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    st.subheader(player["long_name"])
+    st.caption(player["short_name"])
+
+def comparar_metricas(j1, j2):
+    metricas_generales = ["overall", "potential", "pace", "shooting", "passing", "dribbling", "defending", "physic"]
+    metricas_habilidades = ["skill_dribbling", "skill_curve", "skill_ball_control",
+                            "movement_agility", "movement_reactions", "power_shot_power", "power_jumping"]
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        mostrar_jugador_comparador(j1)
+    with col2:
+        mostrar_jugador_comparador(j2)
+
+    st.markdown("---")
+    st.markdown("### Métricas Generales")
+
+    for metrica in metricas_generales:
+        v1 = j1[metrica]
+        v2 = j2[metrica]
+        icon1, color1 = flecha_comparacion(v1, v2)
+        icon2, color2 = flecha_comparacion(v2, v1)
+
+        col1, col2 = st.columns(2)
+        with col1:
+            st.metric(label=metrica, value=int(v1), delta=icon1, delta_color=color1)
+        with col2:
+            st.metric(label=metrica, value=int(v2), delta=icon2, delta_color=color2)
+
+    st.markdown("---")
+    st.markdown("### Habilidades Técnicas")
+
+    for metrica in metricas_habilidades:
+        v1 = j1[metrica]
+        v2 = j2[metrica]
+        icon1, color1 = flecha_comparacion(v1, v2)
+        icon2, color2 = flecha_comparacion(v2, v1)
+
+        col1, col2 = st.columns(2)
+        with col1:
+            st.metric(label=metrica, value=int(v1), delta=icon1, delta_color=color1)
+        with col2:
+            st.metric(label=metrica, value=int(v2), delta=icon2, delta_color=color2)
 
 def cambiar_jugador(delta):
     st.session_state['jugador_actual_index'] = (st.session_state['jugador_actual_index'] + delta) % st.session_state['limit']
