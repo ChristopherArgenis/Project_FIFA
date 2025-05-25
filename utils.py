@@ -73,7 +73,7 @@ def metricas_avanzadas_jugador(player):
         subcol1, subcol2 = st.columns(2)
         with subcol1:
             st.metric("General", value=is_nulo(player.get("overall"), "No disponible"))
-            st.metric("Potential", value=is_nulo(player.get("potential"), "No disponible"))
+            st.metric("Potencial", value=is_nulo(player.get("potential"), "No disponible"))
             st.metric("Ritmo", value=is_nulo(player.get("pace"), "No disponible"))
             st.metric("Tiro", value=is_nulo(player.get("shooting"), "No disponible"))
         with subcol2:
