@@ -3,7 +3,7 @@ import pandas as pd
 
 # Lectura del .csv
 # Con cualquiera que sea solo cambiar "players_<año>.csv"
-players = pd.read_csv("df_players_15.csv")
+players = pd.read_csv("df_players_22.csv")
 # Descubrimiento de las columnas:
 # Proposito: Filtrar columnas innecesarias para el analisis.
 # Code:
@@ -33,7 +33,7 @@ habilidades = ["skill_dribbling", "skill_curve", "skill_ball_control", "movement
 
 # Formato a Guardar.
 # Solo cambiar la parte "df_players_<año>.csv".
-# --- players.to_csv("df_players_22.csv", index=False, columns=columns_required) ---
+# --- players.to_csv("df_players_22.csv", index=False, columns=new_columns_requerid)
 # Para procesarlos todos.
 # Subir el .csv con las columnas que seran necesarias para el analisis.
 # Y metricas a mostrar en la Aplicacion Web usando -> (Streamlit).
@@ -41,7 +41,5 @@ habilidades = ["skill_dribbling", "skill_curve", "skill_ball_control", "movement
 # player = players.iloc[0]
 # print(player)
 
-estadisticas = players[["skill_dribbling", "dribbling", "skill_curve", "skill_ball_control", 
-                        "movement_agility", "movement_reactions", "power_shot_power", "power_jumping"]]
-
-print(estadisticas.head(10))
+# Before : 3.9+ MB - After: 3.6+ MB
+print(players.info())
