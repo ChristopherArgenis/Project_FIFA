@@ -110,9 +110,16 @@ def metricasJugador(player):
 def Jugador(df, indice_actual):
     st.subheader("🎯 Filtro y Búsqueda de Jugadores")
 
+    if 'club_anterior' not in st.session_state:
+        st.session_state['club_anterior'] = "Todos"
+    
     # 📌 Paso 1: Filtro por Club
     clubes_disponibles = sorted(df["club_name"].dropna().unique())
     club_seleccionado = st.selectbox("Filtrar por equipo:", options=["Todos"] + clubes_disponibles)
+
+    if club_seleccionado != st.session_state['club_anterior']:
+        st.session_state['jugador_actual_index'] = 0
+        st.session_state['club_anterior'] = club_seleccionado
 
     if club_seleccionado != "Todos":
         df = df[df["club_name"] == club_seleccionado]
