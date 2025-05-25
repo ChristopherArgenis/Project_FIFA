@@ -14,5 +14,4 @@ Usa el menú de la izquierda para navegar entre secciones:
 - Gráficos interactivos
 """)
 
-st.page_link("streamlit_app.py", label="Principal", icon="🏠")
 st.page_link("pages/Jugador.py", label="Jugador", icon="🎮")
