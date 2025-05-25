@@ -99,8 +99,8 @@ elif seccion == "Comparador":
     nombre_1 = st.text_input("Jugador 1")
     nombre_2 = st.text_input("Jugador 2")
 
-    jugador_1 = df[df["short_name"].str.contains(nombre_1, case=False, na=False)].iloc[0] if nombre_1 and not df[df["short_name"].str.contains(nombre_1, case=False, na=False)].empty else None
-    jugador_2 = df[df["short_name"].str.contains(nombre_2, case=False, na=False)].iloc[0] if nombre_2 and not df[df["short_name"].str.contains(nombre_2, case=False, na=False)].empty else None
+    jugador_1 = df[df["long_name"].str.contains(nombre_1, case=False, na=False)].iloc[0] if nombre_1 and not df[df["long_name"].str.contains(nombre_1, case=False, na=False)].empty else None
+    jugador_2 = df[df["long_name"].str.contains(nombre_2, case=False, na=False)].iloc[0] if nombre_2 and not df[df["long_name"].str.contains(nombre_2, case=False, na=False)].empty else None
 
     if jugador_1 is not None and jugador_2 is not None:
         comparar_metricas(jugador_1, jugador_2)

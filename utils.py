@@ -98,14 +98,6 @@ def metricas_avanzadas_jugador(player):
 
 # Comparador
 
-def flecha_comparacion(val1, val2):
-    if val1 > val2:
-        return "🔼", "green"
-    elif val1 < val2:
-        return "🔽", "red"
-    else:
-        return "⏺", "gray"
-
 def mostrar_jugador_comparador(player):
     st.markdown(
         f"""
@@ -134,31 +126,32 @@ def comparar_metricas(j1, j2):
     st.markdown("### Métricas Generales")
 
     for metrica in metricas_generales:
-        v1 = j1[metrica]
-        v2 = j2[metrica]
-        icon1, color1 = flecha_comparacion(v1, v2)
-        icon2, color2 = flecha_comparacion(v2, v1)
+        v1 = int(j1[metrica])
+        v2 = int(j2[metrica])
+        delta1 = v1 - v2
+        delta2 = v2 - v1
 
         col1, col2 = st.columns(2)
         with col1:
-            st.metric(label=metrica, value=int(v1), delta=icon1, delta_color=color1)
+            st.metric(label=metrica, value=int(v1), delta=f"{delta1:+}", delta_color="normal")
         with col2:
-            st.metric(label=metrica, value=int(v2), delta=icon2, delta_color=color2)
+            st.metric(label=metrica, value=int(v2), delta=f"{delta2:+}", delta_color="normal")
 
     st.markdown("---")
     st.markdown("### Habilidades Técnicas")
 
     for metrica in metricas_habilidades:
-        v1 = j1[metrica]
-        v2 = j2[metrica]
-        icon1, color1 = flecha_comparacion(v1, v2)
-        icon2, color2 = flecha_comparacion(v2, v1)
+        v1 = int(j1[metrica])
+        v2 = int(j2[metrica])
+
+        delta1 = v1 - v2
+        delta2 = v2 - v1
 
         col1, col2 = st.columns(2)
         with col1:
-            st.metric(label=metrica, value=int(v1), delta=icon1, delta_color=color1)
+            st.metric(label=metrica, value=int(v1), delta=f"{delta1:+}", delta_color="normal")
         with col2:
-            st.metric(label=metrica, value=int(v2), delta=icon2, delta_color=color2)
+            st.metric(label=metrica, value=int(v2), delta=f"{delta2:+}", delta_color="normal")
 
 def cambiar_jugador(delta):
     st.session_state['jugador_actual_index'] = (st.session_state['jugador_actual_index'] + delta) % st.session_state['limit']
