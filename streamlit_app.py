@@ -112,7 +112,7 @@ def Jugador(df, indice_actual):
     if search:
         player = df[ df["long_name"].str.contains(search, case=False, na=False) |
                      df["short_name"].str.contains(search, case=False, na=False)
-                   ]
+                   ][0]
     else:
         player = df.iloc[indice_actual]       
     indice = f"Indice de Jugador: {indice_actual}"
