@@ -66,9 +66,9 @@ def metricas_avanzadas_jugador(player):
 
     col_m1, col_m2 = st.columns(2)
     with col_m1:
+        st.markdown("**🧠 Métricas Generales**")
         subcol1, subcol2 = st.columns(2)
         with subcol1:
-            st.markdown("**🧠 Métricas Generales**")
             for m in metricas[:len(metricas)//2]:
                 valor = is_nulo(player.get(m), texto_si_nulo="No disponible")
                 st.metric(label=m.replace("_", " ").capitalize(), value=valor)
@@ -78,9 +78,9 @@ def metricas_avanzadas_jugador(player):
                 st.metric(label=m.replace("_", " ").capitalize(), value=valor)
 
     with col_m2:
+        st.markdown("**🎯 Habilidades Técnicas**")
         subcol3, subcol4 = st.columns(2)
         with subcol3:
-            st.markdown("**🎯 Habilidades Técnicas**")
             for h in habilidades[:len(habilidades)//2]:
                 valor = is_nulo(player.get(h), texto_si_nulo="No disponible")
                 st.metric(label=h.replace("_", " ").capitalize(), value=valor)
@@ -91,4 +91,4 @@ def metricas_avanzadas_jugador(player):
 
 
 def cambiar_jugador(delta):
-    st.session_state['jugador_actual_index'] = (st.session_state['jugador_actual_index'] + delta) % st.session_state['limit']
+    st.session_state['jugador_actual_index'] = (st.session_state['juga
