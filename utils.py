@@ -45,14 +45,10 @@ def metricasJugador(player):
     col1, col2 = st.columns(2)
     col1.metric("Posición", value=player["club_position"])
     col1.metric("Salario Anual", value=formato(player["wage_eur"], True))
+    col1.metric("Valuación", value=formato(player["value_eur"], False))
     col2.metric("Número", value=int(player["club_jersey_number"]))
     col2.image(player["club_logo_url"], width=75)
-    st.metric("Valuación", value=formato(player["value_eur"], False))
-    skill, potential = st.columns(2)
-    skill.metric("Habilidad General", value=int(player["overall"]))
-    skill.metric("Pie Preferente", value=player["preferred_foot"])
-    potential.metric("Potencial", value=int(player["potential"]))
-    potential.metric("Nivel Físico", value=is_nulo(player["physic"]))
+    col2.metric("Pie Preferente", value=player["preferred_foot"])
     st.button("Siguiente Jugador", on_click=lambda: cambiar_jugador(1))
 
 def metricas_avanzadas_jugador(player):
