@@ -39,7 +39,7 @@ def traducir_pie_preferente(valor):
     return "Desconocido"
 
 def datosJugador(player):
-    st.subheader(player["long_name"])
+    st.metric("Nombre Completo", value=player["long_name"])
     st.metric("Alias", value=player["short_name"])
     st.metric("Nacionalidad", value=player["nationality_name"])
     col1, col2, col3 = st.columns(3)
