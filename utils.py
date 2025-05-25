@@ -72,15 +72,15 @@ def metricas_avanzadas_jugador(player):
         st.markdown("**🧠 Métricas Generales**")
         subcol1, subcol2 = st.columns(2)
         with subcol1:
-            st.metric("General", value=is_nulo(player.get("overall"), "No disponible"))
-            st.metric("Potencial", value=is_nulo(player.get("potential"), "No disponible"))
-            st.metric("Ritmo", value=is_nulo(player.get("pace"), "No disponible"))
-            st.metric("Tiro", value=is_nulo(player.get("shooting"), "No disponible"))
+            st.metric("General", value=is_nulo(player.get("overall"), " "))
+            st.metric("Potencial", value=is_nulo(player.get("potential"), " "))
+            st.metric("Ritmo", value=is_nulo(player.get("pace"), " "))
+            st.metric("Tiro", value=is_nulo(player.get("shooting"), " "))
         with subcol2:
-            st.metric("Fisico", value=is_nulo(player.get("physic"), "No disponible"))
-            st.metric("Pase", value=is_nulo(player.get("passing"), "No disponible"))
-            st.metric("Regate", value=is_nulo(player.get("dribbling"), "No disponible"))
-            st.metric("Defensa", value=is_nulo(player.get("defending"), "No disponible"))
+            st.metric("Fisico", value=is_nulo(player.get("physic"), " "))
+            st.metric("Pase", value=is_nulo(player.get("passing"), " "))
+            st.metric("Regate", value=is_nulo(player.get("dribbling"), " "))
+            st.metric("Defensa", value=is_nulo(player.get("defending"), " "))
 
     # --- Habilidades Técnicas ---
     with col_m2:
