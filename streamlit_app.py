@@ -112,17 +112,27 @@ def Jugador(df, indice_actual):
 
     if 'club_anterior' not in st.session_state:
         st.session_state['club_anterior'] = "Todos"
+    if 'nacion_anterior' not in st.session_state:
+        st.session_state['nacion_anterior'] = "Todos"
     
     # 📌 Paso 1: Filtro por Club
     clubes_disponibles = sorted(df["club_name"].dropna().unique())
     club_seleccionado = st.selectbox("Filtrar por equipo:", options=["Todos"] + clubes_disponibles)
 
+    # Filtro por Nacionalidad
+    nacionalidades_disponibles = sorted(df["nationality_name"].dropna().unique())
+    nacionalidad_seleccionada = st.selectbox("Filtrar por nacionalidad:", options=["Todos"] + nacionalidades_disponibles)
+    
     if club_seleccionado != st.session_state['club_anterior']:
         st.session_state['jugador_actual_index'] = 0
         st.session_state['club_anterior'] = club_seleccionado
+        st.session_state['nacion_anterior'] = nacionalidad_seleccionada
 
     if club_seleccionado != "Todos":
         df = df[df["club_name"] == club_seleccionado]
+    
+    if nacionalidad_seleccionada != "Todos":
+        df = df[df["nationality_name"] == nacionalidad_seleccionada]
 
     # 📌 Paso 2: Buscador por nombre o alias dentro del club filtrado
     busqueda = st.text_input("🔍 Buscar jugador por nombre o alias:")
