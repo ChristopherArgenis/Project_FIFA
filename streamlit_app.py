@@ -144,6 +144,7 @@ def Jugador(df, indice_actual):
         if df.empty:
             st.warning("❌ No hay jugadores disponibles en este equipo.")
             return
+        indice_actual = st.session_state['jugador_actual_index']
         player = df.iloc[indice_actual % len(df)]
         st.badge(f"Indice de Jugador: {indice_actual % len(df)}")
 
