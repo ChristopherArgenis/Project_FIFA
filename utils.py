@@ -30,6 +30,14 @@ def is_nulo(valor, texto_si_nulo=" "):
         return texto_si_nulo
     return int(valor)
 
+def traducir_pie_preferente(valor):
+    if isinstance(valor, str):
+        if valor.lower() == "left":
+            return "Izquierda"
+        elif valor.lower() == "right":
+            return "Derecha"
+    return "Desconocido"
+
 def datosJugador(player):
     st.subheader(player["long_name"])
     st.metric("Alias", value=player["short_name"])
@@ -48,7 +56,7 @@ def metricasJugador(player):
     col1.metric("Valuación", value=formato(player["value_eur"], False))
     col2.metric("Número", value=int(player["club_jersey_number"]))
     col2.image(player["club_logo_url"], width=75)
-    col2.metric("Pie Preferente", value=player["preferred_foot"])
+    col2.metric("Pie Preferente", value=traducir_pie_preferente(player["preferred_foot"]))
     st.button("Siguiente Jugador", on_click=lambda: cambiar_jugador(1))
 
 def metricas_avanzadas_jugador(player):
@@ -84,8 +92,6 @@ def metricas_avanzadas_jugador(player):
             st.metric("Reaccion", value=player.get("movement_reactions"))
             st.metric("Poder de Tiro", value=player.get("power_shot_power"))
             st.metric("Poder de Salto", value=player.get("power_jumping"))
-
-
 
 def cambiar_jugador(delta):
     st.session_state['jugador_actual_index'] = (st.session_state['jugador_actual_index'] + delta) % st.session_state['limit']
