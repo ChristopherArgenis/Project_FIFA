@@ -108,8 +108,13 @@ def metricasJugador(player):
     st.button("Siguiente Jugador", on_click=siguiente_jugador)
 
 def Jugador(df, indice_actual):
-    player = df.iloc[indice_actual]
-    # search = st.text_input("Buscar jugadores por alias:")
+    search = st.text_input("Buscar jugadores:")
+    if search:
+        player = df[ df["long_name"].str.contains(busqueda, case=False, na=False) |
+                     df["short_name"].str.contains(busqueda, case=False, na=False)
+                   ]
+    else:
+        player = df.iloc[indice_actual]       
     indice = f"Indice de Jugador: {indice_actual}"
     st.badge(indice)
     data_player, metric_player = st.columns(2)
