@@ -14,7 +14,5 @@ Usa el menú de la izquierda para navegar entre secciones:
 - Gráficos interactivos
 """)
 
-if st.button("Principal"):
-    st.switch_page("streamlit_app.py")
 if st.button("Jugador 🎮"):
-    st.switch_page("pages/Jugador.py")
+    st.switch_page("Jugador")
