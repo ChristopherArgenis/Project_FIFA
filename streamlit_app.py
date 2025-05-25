@@ -72,7 +72,13 @@ elif seccion == "Jugador":
         st.badge(f"Índice actual: {st.session_state['jugador_actual_index'] % len(df)}")
 
     # Mostrar
-    st.image(player["player_face_url"], width=300, caption="Fotografia del Jugador")
+    st.markdown(
+    f"""
+    <div style="text-align: center;">
+        <img src="{player['player_face_url']}" width="300">
+        <p><em>Fotografía del Jugador</em></p>
+    </div>
+    """, unsafe_allow_html=True)
     col1, col2 = st.columns(2)
     with col1:
         datosJugador(player)
