@@ -73,6 +73,7 @@ elif seccion == "Jugador":
 
     # Mostrar
     col1, col2 = st.columns(2)
+    st.image(player["player_face_url"], width=300, caption="Fotografia del Jugador")
     with col1:
         datosJugador(player)
     with col2:

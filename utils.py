@@ -31,7 +31,6 @@ def is_nulo(valor, texto_si_nulo=" "):
     return int(valor)
 
 def datosJugador(player):
-    st.image(player["player_face_url"], width=300, caption="Fotografia del Jugador")
     st.subheader(player["long_name"])
     st.metric("Alias", value=player["short_name"])
     st.metric("Nacionalidad", value=player["nationality_name"])
