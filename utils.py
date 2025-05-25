@@ -262,6 +262,7 @@ def mostrar_tops(df):
             formato(valor, is_wage) if aplicar_formato else int(valor)
             for valor in df_top[metrica_seleccionada]
         ]
+        # Nuevo Dataframe formateado
         df_tabla = pd.DataFrame({
             "Nombre": df_top["long_name"],
             "Club": df_top["club_name"],
