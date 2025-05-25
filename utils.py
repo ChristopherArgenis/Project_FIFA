@@ -267,7 +267,7 @@ def mostrar_tops(df):
             "Club": df_top["club_name"],
             "Nacionalidad": df_top["nationality_name"],
             metrica_traducida: valores
-        })
+        }).reset_index(drop=True)
         st.dataframe(df_tabla, use_container_width=True)
     else:
         st.subheader("📸 Tarjetas de Jugadores")
