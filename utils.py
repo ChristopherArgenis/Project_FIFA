@@ -222,7 +222,7 @@ def mostrar_tops(df):
         "defending": "Defensa",
         "physic": "Físico",
         "skill_dribbling": "Habilidad Regate",
-        "skill_curve": "Curva",
+        "skill_curve": "Efecto",
         "skill_ball_control": "Control de Balón",
         "movement_agility": "Agilidad",
         "movement_reactions": "Reacciones",
