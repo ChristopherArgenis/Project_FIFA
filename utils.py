@@ -292,7 +292,7 @@ def seccion_curiosidades(df):
         st.markdown(f"- 🏆 El país con más jugadores registrados es: **England**")
         st.markdown(f"- 🥾 El jugador con mejor 'Regate' es: **{df.loc[df['dribbling'].idxmax(), 'short_name']}** con {int(df['dribbling'].max())} puntos.")
         st.markdown(f"- 🚀 El más veloz tiene **{int(df['pace'].max())}** puntos de velocidad: **{df.loc[df['pace'].idxmax(), 'short_name']}**.")
-        st.markdown(f"- 🧱 El defensor con mayor 'defending' tiene **{int(df['defending'].max())}**: **{df.loc[df['defending'].idxmax(), 'short_name']}**.")
+        st.markdown(f"- 🧱 El defensor con mayor 'Defensa' tiene **{int(df['defending'].max())}**: **{df.loc[df['defending'].idxmax(), 'short_name']}**.")
 
     st.info("¡Descubre más en la sección de gráficas!")
 
