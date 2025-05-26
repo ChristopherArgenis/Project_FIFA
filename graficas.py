@@ -2,11 +2,11 @@ import streamlit as st
 import pandas as pd
 
 @st.cache_data
-def distribucion_edad(df):
+def f_distribucion_edad(df):
     return df["age"].value_counts().sort_index()
 
 @st.cache_data
-def altura_promedio(df):
+def f_altura_promedio(df):
     return df.groupby("club_position")["height_cm"].mean().dropna()
 
 @st.cache_data
@@ -26,11 +26,11 @@ def seccion_graficas(df):
 
     # Graficas en Expander para mejor visualizazion
     with st.expander("Distribución de Edad", expanded=False):
-        distribucion_edad = distribucion_edad(df)
+        distribucion_edad = f_distribucion_edad(df)
         st.bar_chart(distribucion_edad)
 
     with st.expander("Altura Promedio por Posición", expanded=False):
-        altura_promedio = altura_promedio(df)
+        altura_promedio = f_altura_promedio(df)
         st.bar_chart(altura_promedio)
 
     with st.expander("Top 20: Salario Anual vs Valuación", expanded=False):
