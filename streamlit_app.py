@@ -16,7 +16,7 @@ if seccion == "Inicio":
     Usa el menú de la izquierda para navegar entre:
     - Jugador individual
     - Comparador
-    - Tops
+    - Top Jugadores
     - Preguntas
     - Gráficos interactivos
     """)
