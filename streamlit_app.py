@@ -26,7 +26,8 @@ elif seccion == "Jugador":
     st.subheader("🎮 Jugador Individual")
 
     years = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
-    year = st.selectbox("Selecciona un año:", years)
+    col1, col2 = st.columns(2)
+    year = col1.selectbox("Selecciona un año:", years)
 
     df = cargar_datos(year)
     clubes_disponibles, nacionalidades_disponibles = obtener_clubes_y_nacionalidades(df)
@@ -94,7 +95,8 @@ elif seccion == "Comparador":
 
     # Filtrar por Año el DataFrame
     years = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
-    year = st.selectbox("Selecciona un año:", years)
+    col1, col2 = st.columns(2)
+    year = col1.selectbox("Selecciona un año:", years)
     df = cargar_datos(year)
 
     name_1, name_2 = st.columns(2)
@@ -114,14 +116,15 @@ elif seccion == "Top Jugadores":
 
     # Filtrar por Año el DataFrame
     years = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
-    year = st.selectbox("Selecciona un año:", years)
+    col1, col2 = st.columns(2)
+    year = col1.selectbox("Selecciona un año:", years)
     df = cargar_datos(year)
 
     mostrar_tops(df)
 
 elif seccion == "Preguntas":
     st.header("❓ Preguntas")
-    st.info("Respuestas automáticas basadas en el dataset.")
+    st.info("Respuestas basadas en el dataset.")
     seccion_faq()
 
 elif seccion == "Curiosidades":

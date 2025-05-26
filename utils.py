@@ -302,8 +302,8 @@ def seccion_faq():
 
         st.markdown("#### Métricas de Habilidad")
         st.write("- **Control de balón (skill_ball_control)**: Dominio general del balón.")
-        st.write("- **Curva (skill_curve)**: Precisión al curvar la pelota.")
-        st.write("- **Dribbling (skill_dribbling)**: Capacidad para regatear.")
+        st.write("- **Efecto (skill_curve)**: Precisión al curvar la pelota.")
+        st.write("- **Habilidad de Regate (skill_dribbling)**: Capacidad para regatear.")
         st.write("- **Agilidad (movement_agility)**: Rapidez para cambiar de dirección.")
         st.write("- **Reacción (movement_reactions)**: Tiempo de respuesta a jugadas.")
         st.write("- **Potencia de tiro (power_shot_power)**: Fuerza en los disparos.")
