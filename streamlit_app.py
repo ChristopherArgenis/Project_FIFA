@@ -5,7 +5,7 @@ st.set_page_config(page_title="FIFA App", page_icon="⚽")
 
 # Sidebar de navegación
 st.sidebar.title("Navegación")
-seccion = st.sidebar.selectbox("Ir a sección:", ["Inicio", "Jugador", "Comparador", "Top Jugadores", "Curiosidades", "Gráficos", "Preguntas (FAQ)",])
+seccion = st.sidebar.selectbox("Ir a sección:", ["Inicio", "Jugador", "Comparador", "Top Jugadores", "Gráficos", "Curiosidades", "Preguntas (FAQ)",])
 
 # --- Secciones ---
 if seccion == "Inicio":
@@ -122,6 +122,10 @@ elif seccion == "Top Jugadores":
 
     mostrar_tops(df)
 
+elif seccion == "Gráficos":
+    st.title("📊 Gráficos Interactivos")
+    st.info("Visualizaciones interactivas de estadísticas de jugadores.")
+
 elif seccion == "Curiosidades":
     st.header("📊 Curiosidades sobre los jugadores")
     # Filtrar por Año el DataFrame
@@ -131,10 +135,6 @@ elif seccion == "Curiosidades":
     df = cargar_datos(year)
 
     seccion_curiosidades(df)
-
-elif seccion == "Gráficos":
-    st.title("📊 Gráficos Interactivos")
-    st.info("Visualizaciones interactivas de estadísticas de jugadores.")
 
 elif seccion == "Preguntas (FAQ)":
     st.header("❓ Preguntas")
