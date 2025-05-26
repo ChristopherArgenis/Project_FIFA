@@ -1,5 +1,5 @@
 import streamlit as st
-from utils import cargar_datos, obtener_clubes_y_nacionalidades, datosJugador, metricasJugador, metricas_avanzadas_jugador, comparar_metricas, mostrar_tops
+from utils import cargar_datos, obtener_clubes_y_nacionalidades, datosJugador, metricasJugador, metricas_avanzadas_jugador, comparar_metricas, mostrar_tops, seccion_faq
 
 st.set_page_config(page_title="FIFA App", page_icon="⚽")
 
@@ -120,8 +120,9 @@ elif seccion == "Top Jugadores":
     mostrar_tops(df)
 
 elif seccion == "Preguntas":
-    st.title("❓ Preguntas Frecuentes")
+    st.header("❓ Preguntas")
     st.info("Respuestas automáticas basadas en el dataset.")
+    seccion_faq()
 
 elif seccion == "Gráficos":
     st.title("📊 Gráficos Interactivos")

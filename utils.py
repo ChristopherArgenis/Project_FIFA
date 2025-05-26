@@ -283,5 +283,55 @@ def mostrar_tops(df):
                     st.caption(f"{jugador['nationality_name']} | {jugador['club_name']} | {jugador['club_position']}")
                     st.metric(label=metrica_traducida, value=valor_mostrar)
 
+# Preguntas
+def seccion_faq():
+    st.subheader("❓ Preguntas Frecuentes")
+
+    with st.expander("¿Por qué algunos jugadores no tienen datos de ciertas métricas?"):
+        st.write(
+            "Algunas posiciones, como la de portero, no requieren ciertos atributos como "
+            "pase, velocidad o regate, por lo que esos valores pueden estar vacíos o no aplican."
+        )
+
+    with st.expander("¿Qué es el 'Potencial' y cómo se diferencia del 'General'?"):
+        st.write(
+            "- **General** representa el nivel actual del jugador.\n"
+            "- **Potencial** indica el nivel máximo que puede alcanzar, según la estimación del juego."
+        )
+
+    with st.expander("¿Qué significa cada tipo de métrica?"):
+        st.markdown("#### Métricas Generales")
+        st.write("- **General (overall)**: Nivel actual del jugador.")
+        st.write("- **Potencial (potential)**: Nivel máximo estimado del jugador.")
+        st.write("- **Físico (physic)**: Fuerza y resistencia física.")
+        st.write("- **Velocidad (pace)**: Aceleración y velocidad máxima.")
+
+        st.markdown("#### Métricas Técnicas")
+        st.write("- **Tiro (shooting)**: Capacidad para disparar a portería.")
+        st.write("- **Pase (passing)**: Precisión y capacidad de pase.")
+        st.write("- **Defensa (defending)**: Habilidad para recuperar y bloquear.")
+        st.write("- **Regate (dribbling)**: Habilidad para controlar el balón en movimiento.")
+
+        st.markdown("#### Métricas de Habilidad")
+        st.write("- **Control de balón (skill_ball_control)**: Dominio general del balón.")
+        st.write("- **Curva (skill_curve)**: Precisión al curvar la pelota.")
+        st.write("- **Dribbling (skill_dribbling)**: Capacidad para regatear.")
+        st.write("- **Agilidad (movement_agility)**: Rapidez para cambiar de dirección.")
+        st.write("- **Reacción (movement_reactions)**: Tiempo de respuesta a jugadas.")
+        st.write("- **Potencia de tiro (power_shot_power)**: Fuerza en los disparos.")
+        st.write("- **Salto (power_jumping)**: Capacidad para elevarse.")
+
+    with st.expander("¿Qué representa el valor de mercado (valuación)?"):
+        st.write(
+            "Es una estimación del valor económico del jugador en el mercado de fichajes, "
+            "basado en edad, habilidad y potencial. No es lo mismo que el salario."
+        )
+
+    with st.expander("¿Por qué un mismo jugador aparece en varios años?"):
+        st.write(
+            "Porque los datos corresponden a distintas ediciones del juego, y muestran cómo "
+            "evoluciona el rendimiento y el valor de un jugador a lo largo del tiempo."
+        )
+
 def cambiar_jugador(delta):
     st.session_state['jugador_actual_index'] = (st.session_state['jugador_actual_index'] + delta) % st.session_state['limit']
