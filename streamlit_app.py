@@ -1,5 +1,7 @@
 import streamlit as st
+import pandas as pd
 from utils import cargar_datos, obtener_clubes_y_nacionalidades, datosJugador, metricasJugador, metricas_avanzadas_jugador, comparar_metricas, mostrar_tops, seccion_faq, seccion_curiosidades
+from graficas import mostrar_radar_para_jugador
 
 st.set_page_config(page_title="FIFA App", page_icon="⚽")
 
@@ -125,6 +127,17 @@ elif seccion == "Top Jugadores":
 elif seccion == "Gráficos":
     st.title("📊 Gráficos Interactivos")
     st.info("Visualizaciones interactivas de estadísticas de jugadores.")
+
+    years = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
+    col1, col2 = st.columns(2)
+    year = col1.selectbox("Selecciona un año:", years)
+
+    df = cargar_datos(year)
+
+    st.subheader("Gráfico Radar de Jugador")
+    nombre_jugador = st.text_input("Busca un jugador para ver su gráfico radar", "")
+
+    mostrar_radar_para_jugador(df, nombre_jugador)
 
 elif seccion == "Curiosidades":
     st.header("📊 Curiosidades sobre los jugadores")
