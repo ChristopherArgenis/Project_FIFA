@@ -132,6 +132,7 @@ elif seccion == "Gráficos":
     year = col1.selectbox("Selecciona un año:", years)
     df = cargar_datos(year)
 
+    # Funcion englobando los graficos
     seccion_graficas(df)
 
 elif seccion == "Curiosidades":
