@@ -287,18 +287,6 @@ def mostrar_tops(df):
 def seccion_faq():
     st.subheader("❓ Preguntas Frecuentes")
 
-    with st.expander("¿Por qué algunos jugadores no tienen datos de ciertas métricas?"):
-        st.write(
-            "Algunas posiciones, como la de portero, no requieren ciertos atributos como "
-            "pase, velocidad o regate, por lo que esos valores pueden estar vacíos o no aplican."
-        )
-
-    with st.expander("¿Qué es el 'Potencial' y cómo se diferencia del 'General'?"):
-        st.write(
-            "- **General** representa el nivel actual del jugador.\n"
-            "- **Potencial** indica el nivel máximo que puede alcanzar, según la estimación del juego."
-        )
-
     with st.expander("¿Qué significa cada tipo de métrica?"):
         st.markdown("#### Métricas Generales")
         st.write("- **General (overall)**: Nivel actual del jugador.")
@@ -321,6 +309,18 @@ def seccion_faq():
         st.write("- **Potencia de tiro (power_shot_power)**: Fuerza en los disparos.")
         st.write("- **Salto (power_jumping)**: Capacidad para elevarse.")
 
+    with st.expander("¿Qué es el 'Potencial' y cómo se diferencia del 'General'?"):
+        st.write(
+            "- **General** representa el nivel actual del jugador.\n"
+            "- **Potencial** indica el nivel máximo que puede alcanzar, según una estimación."
+        )
+
+    with st.expander("¿Por qué algunos jugadores no tienen datos de ciertas métricas?"):
+        st.write(
+            "Algunas posiciones, como la de portero, no requieren ciertos atributos como "
+            "pase, velocidad o regate, por lo que esos valores pueden estar vacíos o no aplican."
+        )
+
     with st.expander("¿Qué representa el valor de mercado (valuación)?"):
         st.write(
             "Es una estimación del valor económico del jugador en el mercado de fichajes, "
@@ -329,7 +329,7 @@ def seccion_faq():
 
     with st.expander("¿Por qué un mismo jugador aparece en varios años?"):
         st.write(
-            "Porque los datos corresponden a distintas ediciones del juego, y muestran cómo "
+            "Porque los datos corresponden a distintas ediciones, y muestran cómo "
             "evoluciona el rendimiento y el valor de un jugador a lo largo del tiempo."
         )
 
