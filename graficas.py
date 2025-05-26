@@ -24,6 +24,7 @@ def media_metricas_generales(df):
 def seccion_graficas(df):
     st.header("📊 Gráficas de Jugadores")
 
+    # Graficas en Expander para mejor visualizazion
     with st.expander("Distribución de Edad", expanded=False):
         distribucion_edad = distribucion_edad(df)
         st.bar_chart(distribucion_edad)
