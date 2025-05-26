@@ -5,7 +5,7 @@ st.set_page_config(page_title="FIFA App", page_icon="⚽")
 
 # Sidebar de navegación
 st.sidebar.title("Navegación")
-seccion = st.sidebar.selectbox("Ir a sección:", ["Inicio", "Jugador", "Comparador", "Top Jugadores", "Preguntas", "Gráficos"])
+seccion = st.sidebar.selectbox("Ir a sección:", ["Inicio", "Jugador", "Comparador", "Top Jugadores", "Preguntas", "Curiosidades", "Gráficos"])
 
 # --- Secciones ---
 if seccion == "Inicio":
@@ -123,13 +123,13 @@ elif seccion == "Preguntas":
     st.header("❓ Preguntas")
     st.info("Respuestas automáticas basadas en el dataset.")
     seccion_faq()
-    
-    st.divider()
 
+elif seccion == "Curiosidades":
     st.header("📊 Curiosidades sobre los jugadores")
     # Filtrar por Año el DataFrame
     years = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
-    year = st.selectbox("Selecciona un año:", years)
+    col1, col2 = st.columns(2)
+    year = col1.selectbox("Selecciona un año:", years)
     df = cargar_datos(year)
 
     seccion_curiosidades(df)
