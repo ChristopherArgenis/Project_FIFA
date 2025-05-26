@@ -334,8 +334,6 @@ def seccion_faq():
         )
 
 def seccion_curiosidades(df):
-    st.header("📊 Curiosidades sobre los jugadores")
-
     with st.expander("Datos interesantes del dataset"):
         st.markdown("- ⚽ ¿Sabías que el jugador más alto mide más de **2 metros**?")
         st.markdown(f"- 💰 El jugador con **mayor valor de mercado** es: **{df.loc[df['value_eur'].idxmax(), 'short_name']}**")

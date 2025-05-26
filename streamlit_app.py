@@ -123,7 +123,10 @@ elif seccion == "Preguntas":
     st.header("❓ Preguntas")
     st.info("Respuestas automáticas basadas en el dataset.")
     seccion_faq()
+    
     st.divider()
+
+    st.header("📊 Curiosidades sobre los jugadores")
     # Filtrar por Año el DataFrame
     years = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
     year = st.selectbox("Selecciona un año:", years)
