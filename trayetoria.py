@@ -78,7 +78,7 @@ def seccion_trayectoria(jugador_seleccionado):
 # Supone que df_jugador es el DataFrame del jugador seleccionado (Messi o Cristiano)
 
 def graficas_evolucion(nombre_jugador):
-    st.subheader(f"Gráficas de Trayectoria - {nombre_jugador}")
+    st.subheader(f"Gráficas de Trayectoria")
 
     tabs = st.tabs(["Evolución General", "Valor Económico", "Técnicas Año a Año", "Radar (próximamente)"])
 
