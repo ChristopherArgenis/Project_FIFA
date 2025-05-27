@@ -24,7 +24,7 @@ def seccion_graficas(df):
     with tabs[0]: 
         medidas_list = ["age", "height_cm", "weight_kg", "preferred_foot", "club_position"]
         medida = st.selectbox("Elige la medida", medidas_list)
-        st.subheader("Distribución de Edad")
+        st.subheader(f"Distribución de {medida}")
         distribucion_edad = f_distribucion_edad(df, medida)
         st.bar_chart(distribucion_edad)
 
