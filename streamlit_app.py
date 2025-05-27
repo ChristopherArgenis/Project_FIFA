@@ -1,7 +1,7 @@
 import streamlit as st
 from general import cargar_datos, obtener_clubes_y_nacionalidades, datosJugador, metricasJugador, metricas_avanzadas_jugador, comparar_metricas, mostrar_tops, seccion_faq, seccion_curiosidades
-from utils.graficas import seccion_graficas
-from utils.trayetoria import seccion_trayectoria
+from graficas import seccion_graficas
+from trayetoria import seccion_trayectoria
 
 st.set_page_config(page_title="FIFA App", page_icon="⚽")
 
