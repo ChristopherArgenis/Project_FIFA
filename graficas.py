@@ -2,8 +2,8 @@ import streamlit as st
 import pandas as pd
 
 @st.cache_data
-def f_distribucion_edad(df):
-    return df["age"].value_counts().sort_index()
+def f_distribucion_edad(df, column="age"):
+    return df[column].value_counts().sort_index()
 
 @st.cache_data
 def valor_vs_salario(df):
@@ -22,8 +22,9 @@ def seccion_graficas(df):
 
     # Distribuciones
     with tabs[0]:
+        medida = st.selectbox("Elige la medida", ["age", "height_cm", "weight_kg", "preferred_foot"])
         st.subheader("Distribución de Edad")
-        distribucion_edad = f_distribucion_edad(df)
+        distribucion_edad = f_distribucion_edad(df, medida)
         st.bar_chart(distribucion_edad)
 
     with tabs[1]:
