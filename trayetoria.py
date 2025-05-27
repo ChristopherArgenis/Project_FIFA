@@ -24,28 +24,45 @@ def formato(valor, is_wage):
 def obtener_tabla_resumen(df):
     # Agregar columna de año si no existe
     if "año" not in df.columns:
-        df["año"] = list(range(2015, 2023))  # solo si ya se estableció como índice externo
+        df["año"] = df.index
 
     columnas_utiles = [
         "overall", "potential", "pace", "shooting", "passing", "dribbling",
         "defending", "physic", "value_eur", "wage_eur", "age", "height_cm", "weight_kg"
     ]
 
+    traduccion_metricas = {
+        "overall": "Media General",
+        "potential": "Potencial",
+        "pace": "Ritmo",
+        "shooting": "Disparo",
+        "passing": "Pase",
+        "dribbling": "Regate",
+        "defending": "Defensa",
+        "physic": "Físico",
+        "value_eur": "Valor (€)",
+        "wage_eur": "Salario Anual (€)",
+        "age": "Edad",
+        "height_cm": "Altura (cm)",
+        "weight_kg": "Peso (kg)"
+    }
+
     # Validar columnas existentes
     columnas_existentes = [col for col in columnas_utiles if col in df.columns]
-
-    # Solo columnas válidas + año
     df_filtrado = df[["año"] + columnas_existentes].copy()
 
-    # Formatear valores monetarios
+    # Formatear monetarios
     if "value_eur" in df_filtrado.columns:
         df_filtrado["value_eur"] = df_filtrado["value_eur"].apply(lambda x: formato(x, is_wage=False))
     if "wage_eur" in df_filtrado.columns:
         df_filtrado["wage_eur"] = df_filtrado["wage_eur"].apply(lambda x: formato(x, is_wage=True))
 
-    # Poner años como columnas
+    # Establecer años como columnas
     df_filtrado.set_index("año", inplace=True)
-    tabla = df_filtrado.T  # Transponer para que las métricas sean el índice
+    tabla = df_filtrado.T  # transponer: métricas = filas, columnas = años
+
+    # Traducir nombres de métricas
+    tabla.index = [traduccion_metricas.get(metric, metric) for metric in tabla.index]
 
     return tabla
 
