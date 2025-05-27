@@ -95,8 +95,8 @@ def graficas_evolucion(nombre_jugador):
     # --- Tab 2: Valor Económico ---
     with tabs[1]:
         st.markdown("### Valor Económico")
-        valores = df_jugador[["value_eur", "wage_eur"]]
-        st.line_chart(valores)
+        valor = df_jugador["value_eur"]
+        st.line_chart(valor)
 
     # --- Tab 3: Técnicas Año a Año ---
     with tabs[2]:
