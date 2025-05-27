@@ -18,7 +18,7 @@ def media_metricas_generales(df):
     return df[columnas].mean().sort_values(ascending=False)
 
 def seccion_graficas(df):
-    tabs = st.tabs(["Barras", "Dispersión", "Correlación"])
+    tabs = st.tabs(["Barras", "Dispersión", "Metricas"])
 
     # Distribuciones
     with tabs[0]: 
