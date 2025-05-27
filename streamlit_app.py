@@ -1,5 +1,5 @@
 import streamlit as st
-from general import cargar_datos, obtener_clubes_y_nacionalidades, datosJugador, metricasJugador, metricas_avanzadas_jugador, comparar_metricas, mostrar_tops, seccion_faq, seccion_curiosidades
+from general import cargar_datos, obtener_clubes_y_nacionalidades, datosJugador, metricasJugador, metricas_avanzadas_jugador, comparar_metricas, mostrar_tops, seccion_faq, seccion_curiosidades, seccion_inicio
 from graficas import seccion_graficas
 from trayetoria import seccion_trayectoria, graficas_evolucion
 
@@ -11,17 +11,7 @@ seccion = st.sidebar.selectbox("Ir a sección:", ["Inicio", "Jugador", "Trayecto
 
 # --- Secciones ---
 if seccion == "Inicio":
-    st.title("⚽ FIFA Player Dashboard")
-    st.markdown("""
-    Bienvenido al panel de análisis de jugadores de FIFA.
-    
-    Usa el menú de la izquierda para navegar entre:
-    - Jugador individual
-    - Comparador
-    - Top Jugadores
-    - Preguntas
-    - Gráficos interactivos
-    """)
+    seccion_inicio()
 
 elif seccion == "Jugador":
 

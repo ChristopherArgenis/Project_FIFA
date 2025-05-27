@@ -11,6 +11,35 @@ def obtener_clubes_y_nacionalidades(df):
     nacionalidades = sorted(df["nationality_name"].dropna().unique())
     return clubes, nacionalidades
 
+def seccion_inicio():
+    st.title("⚽ Football Analytics Hub")
+    st.markdown("---")
+
+    st.markdown("""
+    ### Bienvenido al centro definitivo de análisis futbolístico 🎯
+
+    Sumérgete en una experiencia interactiva diseñada para **fanáticos, analistas y amantes del fútbol**.
+    Esta plataforma combina estadísticas detalladas, visualizaciones impactantes y comparativas inteligentes 
+    para ofrecerte un recorrido completo por el universo del fútbol moderno.
+
+    🔍 **¿Qué puedes hacer aquí?**
+
+    - Explora más de mil jugadores con sus **estadísticas generales, técnicas y económicas**.
+    - **Compara cara a cara** a tus futbolistas favoritos y descubre quién domina en cada métrica.
+    - Consulta los **Top Rankings** por posición, nacionalidad, club, valor de mercado, salario, altura y mucho más.
+    - Participa en **curiosidades, preguntas futboleras** y pronto... ¡en nuestros quizes!
+    - Navega por gráficas exclusivas y descubre patrones que van más allá de los números.
+    - Sumérgete en la **trayectoria histórica de Messi y Cristiano Ronaldo**, una rivalidad legendaria analizada como nunca antes.
+
+    📊 Cada sección ha sido pensada para **impresionar a los apasionados**, facilitar el análisis a los expertos, 
+    y sobre todo, **maravillar a quienes aman este deporte**.
+
+    ---
+    """)
+    
+    st.success("⚠ Consejo: Usa las pestañas, filtros y visualizaciones para personalizar tu experiencia.")
+    st.markdown("👉 ¡Comienza a explorar en el menú de la izquierda!")
+
 def formato(valor, is_wage):
     if pd.isna(valor):
         return " "
