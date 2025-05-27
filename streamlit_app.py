@@ -1,5 +1,5 @@
 import streamlit as st
-from utils.general import cargar_datos, obtener_clubes_y_nacionalidades, datosJugador, metricasJugador, metricas_avanzadas_jugador, comparar_metricas, mostrar_tops, seccion_faq, seccion_curiosidades
+from general import cargar_datos, obtener_clubes_y_nacionalidades, datosJugador, metricasJugador, metricas_avanzadas_jugador, comparar_metricas, mostrar_tops, seccion_faq, seccion_curiosidades
 from utils.graficas import seccion_graficas
 from utils.trayetoria import seccion_trayectoria
 
