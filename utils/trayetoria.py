@@ -1,30 +1,42 @@
 import streamlit as st
+import pandas as pd
 
-def selector_jugador_trayectoria(jugadores):
+def seleccionar_jugador():
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
-        jugador = st.selectbox("Selecciona el Jugador", jugadores, index=0)
+        jugador = st.selectbox("Selecciona el Jugador", ["L. Messi", "Cristiano Ronaldo"])
     return jugador
 
-def tabla_resumen_anual(df, jugador):
-    metricas = ["overall", "potential", "pace", "shooting", "passing", "dribbling", "defending", "physic"]
+def obtener_tabla_resumen(df):
+    # Filtrar columnas numéricas útiles para el resumen
+    columnas_utiles = [
+        "overall", "potential", "pace", "shooting", "passing", "dribbling", "defending", "physic",
+        "value_eur", "wage_eur", "age", "height_cm", "weight_kg"
+    ]
     
-    # Filtrar por jugador
-    df_jugador = df[df["short_name"] == jugador].copy()
-    
-    if df_jugador.empty:
-        st.warning("No hay datos disponibles para este jugador.")
-        return
-    
-    # Verificar que 'year' exista
-    if "year" not in df_jugador.columns:
-        st.error("La columna 'year' no está disponible en el conjunto de datos.")
-        return
-    
-    # Crear tabla pivot
-    tabla = df_jugador[["year"] + metricas].set_index("year").T
-    tabla.columns = tabla.columns.astype(str)  # Asegura que los años sean string
-    
-    # Mostrar tabla
-    st.subheader("Resumen de métricas por año")
-    st.dataframe(tabla.style.format(precision=1))
+    # Verificamos qué columnas existen realmente
+    columnas_existentes = [col for col in columnas_utiles if col in df.columns]
+
+    # Añadir la columna de año como index si no está
+    if "año" in df.columns:
+        df.set_index("año", inplace=True)
+
+    # Transponer: índice = métricas, columnas = años
+    tabla = df[columnas_existentes].T
+    return tabla
+
+def seccion_trayectoria():
+    st.title("📈 Trayectoria del Jugador")
+
+    # 1. Selección
+    jugador_seleccionado = seleccionar_jugador()
+
+    # 2. Obtener dataframe según jugador - Preprocesamiento previo con pandas
+    df_messi = pd.read_csv("messi_trayectoria.csv")
+    df_cristiano = pd.read_csv("cristiano_trayectoria.csv")
+    df = df_messi if jugador_seleccionado == "L. Messi" else df_cristiano
+
+    # 3. Mostrar tabla resumen
+    st.subheader("Resumen de Métricas por Año")
+    tabla = obtener_tabla_resumen(df)
+    st.dataframe(tabla)
