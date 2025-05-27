@@ -74,13 +74,10 @@ def seccion_trayectoria(jugador_seleccionado):
     tabla = obtener_tabla_resumen(df)
     st.dataframe(tabla)
 
-# Este archivo debe usarse dentro del contexto del selectbox y los datos ya procesados
-# Supone que df_jugador es el DataFrame del jugador seleccionado (Messi o Cristiano)
-
 def graficas_evolucion(nombre_jugador):
     st.subheader(f"Gráficas de Trayectoria")
 
-    tabs = st.tabs(["Evolución General", "Valor Económico", "Técnicas Año a Año", "Radar (próximamente)"])
+    tabs = st.tabs(["Barras", "Valor Económico", "Técnicas Año a Año"])
 
     df_messi = pd.read_csv("messi_trayectoria.csv")
     df_cristiano = pd.read_csv("cristiano_trayectoria.csv")
@@ -93,10 +90,10 @@ def graficas_evolucion(nombre_jugador):
     with tabs[0]:
         st.markdown("### Evolución General")
         metricas_disponibles = ["overall", "potential", "pace", "shooting", "passing", "dribbling", "defending", "physic"]
-        seleccionadas = st.multiselect("Selecciona las métricas a visualizar:", options=metricas_disponibles, default=["overall", "potential"])
+        seleccionado = st.selectbox("Selecciona las métricas a visualizar:", options=metricas_disponibles, default=["overall", "potential"])
 
-        if seleccionadas:
-            st.line_chart(df_jugador[seleccionadas])
+        if seleccionado:
+            st.bar_chart(df_jugador[seleccionado])
 
     # --- Tab 2: Valor Económico ---
     with tabs[1]:
@@ -112,7 +109,3 @@ def graficas_evolucion(nombre_jugador):
         if mostrar_tecnicos:
             metricas_tecnicas = ["pace", "shooting", "passing", "dribbling", "defending", "physic"]
             st.line_chart(df_jugador[metricas_tecnicas])
-
-    # --- Tab 4: Radar Chart (placeholder) ---
-    with tabs[3]:
-        st.info("Gráfico radar en desarrollo. Estará disponible próximamente.")
