@@ -90,7 +90,7 @@ def graficas_evolucion(nombre_jugador):
     with tabs[0]:
         st.markdown("### Evolución General")
         metricas_disponibles = ["overall", "potential", "pace", "shooting", "passing", "dribbling", "defending", "physic"]
-        seleccionado = st.selectbox("Selecciona las métricas a visualizar:", options=metricas_disponibles, default=["overall", "potential"])
+        seleccionado = st.selectbox("Selecciona la métrica a visualizar:", options=metricas_disponibles)
 
         if seleccionado:
             st.bar_chart(df_jugador[seleccionado])
