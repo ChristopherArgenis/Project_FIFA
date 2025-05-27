@@ -96,9 +96,12 @@ elif seccion == "Trayectoria":
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
         jugador = st.selectbox("Selecciona el Jugador", ["L. Messi", "Cristiano Ronaldo"])
-    # Llamas a la sección cuando sea la pestaña activa
-    seccion_trayectoria(jugador)
-    graficas_evolucion(jugador)
+    options = ["Tabla", "Graficas"]
+    selection = st.pills("Formato", options, selection_mode="single")
+    if selection == "Tabla":
+        seccion_trayectoria(jugador)
+    else:
+        graficas_evolucion(jugador)
 
 elif seccion == "Comparador":
     st.subheader("🔍 Comparador de Jugadores")
