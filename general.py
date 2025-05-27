@@ -377,3 +377,87 @@ def seccion_faq():
 
 def cambiar_jugador(delta):
     st.session_state['jugador_actual_index'] = (st.session_state['jugador_actual_index'] + delta) % st.session_state['limit']
+
+# Acerca de...
+def seccion_acerca():
+    st.header("📘 Acerca de esta Aplicación")
+    st.markdown("---")
+    st.markdown("""
+    En esta sección encontrarás la **documentación técnica y explicativa** de todo el proceso detrás de esta plataforma. 
+    Desde el análisis y transformación de datos hasta cómo se visualiza cada apartado.
+    
+    Cada expander a continuación detalla el **trabajo realizado en cada sección** de la app.
+    """)
+
+    with st.expander("📂 1. Carga y Preparación de Datos"):
+        st.markdown("""
+        - **Análisis:** Se recolectaron datasets desde FIFA 15 hasta FIFA 22, centrando el análisis en jugadores con información suficiente.
+        - **Transformación:** 
+            - Se estandarizaron nombres, posiciones y columnas relevantes.
+            - Se unieron múltiples CSVs en estructuras por jugador o año para trayectorias.
+            - Se tradujeron métricas y se normalizaron datos monetarios (salario y valuación).
+        - **Resultado:** Se obtuvo un dataframe limpio y estructurado, con columnas clave como estadísticas generales, técnicas, económicas y físicas.
+        """)
+
+    with st.expander("👤 2. Sección: Jugador"):
+        st.markdown("""
+        - **Funcionalidad:** Búsqueda por nombre y despliegue de información detallada.
+        - **Visualización:** Imagen, nombre, métricas generales, técnicas y económicas.
+        - **Transformaciones aplicadas:** 
+            - Formateo personalizado para salarios y valores.
+            - Traducción de columnas (ej. `preferred_foot` a "Izquierda"/"Derecha").
+        - **Resultado:** Vista centrada y visualmente ordenada del rendimiento e información del jugador.
+        """)
+
+    with st.expander("🤜🤛 3. Sección: Comparador"):
+        st.markdown("""
+        - **Funcionalidad:** Comparar dos jugadores por nombre.
+        - **Visualización:** Imagen, nombre y métricas enfrentadas.
+        - **Lógica especial:** 
+            - Se usaron `st.metric` con flechas verde/roja/gris según quién supera en cada métrica.
+            - Se controló que no se comparen métricas inexistentes (como porteros en velocidad).
+        - **Resultado:** Comparaciones intuitivas y útiles para elegir entre dos talentos.
+        """)
+
+    with st.expander("📊 4. Sección: Tops"):
+        st.markdown("""
+        - **Funcionalidad:** Mostrar rankings por métrica seleccionada.
+        - **Filtros:** Nacionalidad, posición, club.
+        - **Visualización:** Tarjetas o tabla según preferencia del usuario.
+        - **Transformaciones destacadas:** 
+            - Formateo monetario con función `formato()`.
+            - Traducción de métricas.
+            - Tablas ordenadas con índice que inicia en 1.
+        - **Resultado:** Rankings dinámicos, claros y visualmente atractivos.
+        """)
+
+    with st.expander("🧠 5. Sección: Preguntas & Curiosidades"):
+        st.markdown("""
+        - **Objetivo:** Educar y entretener al usuario con contenido futbolero.
+        - **Contenido:** 
+            - FAQ (significado de métricas, conceptos como potencial y general).
+            - Curiosidades (top clubes con más jugadores, nacionalidades dominantes).
+        - **Resultado:** Una sección educativa que enriquece el análisis con contexto.
+        """)
+
+    with st.expander("📈 6. Sección: Gráficas"):
+        st.markdown("""
+        - **Gráficos incluidos:** Barras, dispersión, histogramas y pronto radar.
+        - **Opciones del usuario:** 
+            - Elegir qué métrica graficar.
+            - Filtros avanzados.
+        - **Cálculos cacheados:** Optimización mediante funciones decoradas con `@st.cache`.
+        - **Resultado:** Visualización rica en insights sobre la distribución y relaciones de los datos.
+        """)
+
+    with st.expander("📆 7. Sección: Trayectoria"):
+        st.markdown("""
+        - **Jugadores:** Messi y Cristiano Ronaldo entre 2015 y 2022.
+        - **Análisis:** 
+            - Se preprocesaron y unieron los datos por año.
+            - Se construyó una tabla resumen (años como columnas, métricas como filas).
+            - Visualizaciones de evolución por año, valor económico, técnica y progresión/regresión.
+        - **Resultado:** Un seguimiento histórico y visualmente atractivo de dos leyendas del fútbol.
+        """)
+
+    st.info("📌 Cada sección ha sido cuidadosamente diseñada para balancear análisis técnico, estética y utilidad práctica.")

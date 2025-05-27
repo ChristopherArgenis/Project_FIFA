@@ -1,5 +1,5 @@
 import streamlit as st
-from general import cargar_datos, obtener_clubes_y_nacionalidades, datosJugador, metricasJugador, metricas_avanzadas_jugador, comparar_metricas, mostrar_tops, seccion_faq, seccion_curiosidades, seccion_inicio
+from general import cargar_datos, obtener_clubes_y_nacionalidades, datosJugador, metricasJugador, metricas_avanzadas_jugador, comparar_metricas, mostrar_tops, seccion_faq, seccion_curiosidades, seccion_inicio, seccion_acerca
 from graficas import seccion_graficas
 from trayetoria import seccion_trayectoria, graficas_evolucion
 
@@ -7,7 +7,7 @@ st.set_page_config(page_title="FIFA App", page_icon="⚽")
 
 # Sidebar de navegación
 st.sidebar.title("Navegación")
-seccion = st.sidebar.selectbox("Ir a sección:", ["Inicio", "Jugador", "Trayectoria", "Comparador", "Top Jugadores", "Gráficos", "Curiosidades", "Preguntas (FAQ)",])
+seccion = st.sidebar.selectbox("Ir a sección:", ["Inicio", "Jugador", "Trayectoria", "Comparador", "Top Jugadores", "Gráficos", "Curiosidades", "Preguntas (FAQ)", "Acerca de..."])
 
 # --- Secciones ---
 if seccion == "Inicio":
@@ -151,3 +151,6 @@ elif seccion == "Preguntas (FAQ)":
     st.header("❓ Preguntas")
     st.info("Respuestas basadas en el dataset.")
     seccion_faq()
+
+elif seccion == "Acerca de...":
+    seccion_acerca()
