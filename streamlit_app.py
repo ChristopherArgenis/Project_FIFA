@@ -1,7 +1,7 @@
 import streamlit as st
 from general import cargar_datos, obtener_clubes_y_nacionalidades, datosJugador, metricasJugador, metricas_avanzadas_jugador, comparar_metricas, mostrar_tops, seccion_faq, seccion_curiosidades
 from graficas import seccion_graficas
-from trayetoria import seccion_trayectoria
+from trayetoria import seccion_trayectoria, graficas_evolucion
 
 st.set_page_config(page_title="FIFA App", page_icon="⚽")
 
@@ -93,9 +93,12 @@ elif seccion == "Jugador":
 
 elif seccion == "Trayectoria":
     st.subheader("📈 Trayectoria del Jugador")
-
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        jugador = st.selectbox("Selecciona el Jugador", ["L. Messi", "Cristiano Ronaldo"])
     # Llamas a la sección cuando sea la pestaña activa
-    seccion_trayectoria()
+    seccion_trayectoria(jugador)
+    graficas_evolucion(jugador)
 
 elif seccion == "Comparador":
     st.subheader("🔍 Comparador de Jugadores")

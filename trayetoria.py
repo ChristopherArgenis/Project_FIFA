@@ -1,12 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-def seleccionar_jugador():
-    col1, col2, col3 = st.columns([1, 2, 1])
-    with col2:
-        jugador = st.selectbox("Selecciona el Jugador", ["L. Messi", "Cristiano Ronaldo"])
-    return jugador
-
 def formato(valor, is_wage):
     if pd.isna(valor):
         return " "
@@ -69,16 +63,56 @@ def obtener_tabla_resumen(df):
 
     return tabla
 
-def seccion_trayectoria():
-    # 1. Selección
-    jugador_seleccionado = seleccionar_jugador()
-
-    # 2. Obtener dataframe según jugador - Preprocesamiento previo con pandas
+def seccion_trayectoria(jugador_seleccionado):
+    # 1. Obtener dataframe según jugador - Preprocesamiento previo con pandas
     df_messi = pd.read_csv("messi_trayectoria.csv")
     df_cristiano = pd.read_csv("cristiano_trayectoria.csv")
     df = df_messi if jugador_seleccionado == "L. Messi" else df_cristiano
 
-    # 3. Mostrar tabla resumen
+    # 2. Mostrar tabla resumen
     st.subheader("Resumen de Métricas por Año")
     tabla = obtener_tabla_resumen(df)
     st.dataframe(tabla)
+
+# Este archivo debe usarse dentro del contexto del selectbox y los datos ya procesados
+# Supone que df_jugador es el DataFrame del jugador seleccionado (Messi o Cristiano)
+
+def graficas_evolucion(nombre_jugador):
+    st.subheader(f"Gráficas de Trayectoria - {nombre_jugador}")
+
+    tabs = st.tabs(["Evolución General", "Valor Económico", "Técnicas Año a Año", "Radar (próximamente)"])
+
+    df_messi = pd.read_csv("messi_trayectoria.csv")
+    df_cristiano = pd.read_csv("cristiano_trayectoria.csv")
+    df_jugador = df_messi if nombre_jugador == "L. Messi" else df_cristiano
+
+    df_jugador["año"] = list(range(2015, 2023))
+    df_jugador = df_jugador.set_index("año")
+
+    # --- Tab 1: Evolución General ---
+    with tabs[0]:
+        st.markdown("### Evolución General")
+        metricas_disponibles = ["overall", "potential", "pace", "shooting", "passing", "dribbling", "defending", "physic"]
+        seleccionadas = st.multiselect("Selecciona las métricas a visualizar:", options=metricas_disponibles, default=["overall", "potential"])
+
+        if seleccionadas:
+            st.line_chart(df_jugador[seleccionadas])
+
+    # --- Tab 2: Valor Económico ---
+    with tabs[1]:
+        st.markdown("### Valor Económico")
+        valores = df_jugador[["value_eur", "wage_eur"]]
+        st.line_chart(valores)
+
+    # --- Tab 3: Técnicas Año a Año ---
+    with tabs[2]:
+        st.markdown("### Atributos Técnicos")
+        mostrar_tecnicos = st.checkbox("Mostrar atributos técnicos", value=True)
+
+        if mostrar_tecnicos:
+            metricas_tecnicas = ["pace", "shooting", "passing", "dribbling", "defending", "physic"]
+            st.line_chart(df_jugador[metricas_tecnicas])
+
+    # --- Tab 4: Radar Chart (placeholder) ---
+    with tabs[3]:
+        st.info("Gráfico radar en desarrollo. Estará disponible próximamente.")
