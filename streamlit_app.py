@@ -140,7 +140,6 @@ elif seccion == "Gráficos":
     st.caption("Visualizaciones interactivas de estadísticas de jugadores.")
 
     years = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"]
-    col1, col2 = st.columns(2)
     year = col1.selectbox("Selecciona un año:", years)
     df = cargar_datos(year)
 
