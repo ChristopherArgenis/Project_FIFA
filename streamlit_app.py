@@ -92,7 +92,7 @@ elif seccion == "Jugador":
     metricas_avanzadas_jugador(player)
 
 elif seccion == "Trayectoria":
-    st.subheader("Trayecoria de Messi y Cristiano")
+    st.subheader("📈 Trayectoria del Jugador")
 
     # Llamas a la sección cuando sea la pestaña activa
     seccion_trayectoria()
