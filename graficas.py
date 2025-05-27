@@ -1,65 +1,37 @@
 import streamlit as st
-import matplotlib.pyplot as plt
-import seaborn as sns
 import pandas as pd
 
 @st.cache_data
-def distribucion_edad(df):
-    fig, ax = plt.subplots(figsize=(8, 5))
-    sns.histplot(df["age"], bins=20, kde=True, color="skyblue", ax=ax)
-    ax.set_title("Distribución de Edades")
-    ax.set_xlabel("Edad")
-    ax.set_ylabel("Número de Jugadores")
-    return fig
+def f_distribucion_edad(df):
+    return df["age"].value_counts().sort_index()
 
 @st.cache_data
-def jugadores_por_posicion(df):
-    fig, ax = plt.subplots(figsize=(10, 5))
-    orden = df["player_positions"].value_counts().head(10)
-    sns.barplot(x=orden.index, y=orden.values, palette="viridis", ax=ax)
-    ax.set_title("Top Posiciones Más Comunes")
-    ax.set_xlabel("Posición")
-    ax.set_ylabel("Cantidad de Jugadores")
-    plt.xticks(rotation=45)
-    return fig
+def valor_vs_salario(df):
+    df_val = df[["short_name", "value_eur", "wage_eur"]].dropna()
+    df_val = df_val.sort_values(by="value_eur", ascending=False).head(20)
+    df_val["salario_anual"] = df_val["wage_eur"] * 52
+    return df_val.set_index("short_name")[["value_eur", "salario_anual"]]
 
 @st.cache_data
-def correlacion_estadisticas(df):
-    cols = ["pace", "shooting", "passing", "dribbling", "defending", "physic", "overall", "potential"]
-    df_corr = df[cols].dropna()
-    corr = df_corr.corr()
-    fig, ax = plt.subplots(figsize=(10, 7))
-    sns.heatmap(corr, annot=True, cmap="coolwarm", fmt=".2f", ax=ax)
-    ax.set_title("Correlación entre Métricas")
-    return fig
-
-@st.cache_data
-def dispersion_valor_vs_edad(df):
-    fig, ax = plt.subplots(figsize=(10, 6))
-    sns.scatterplot(x="age", y="value_eur", data=df, hue="club_name", legend=False, palette="tab10", ax=ax)
-    ax.set_title("Valor de Mercado vs Edad")
-    ax.set_xlabel("Edad")
-    ax.set_ylabel("Valor de Mercado (€)")
-    return fig
+def media_metricas_generales(df):
+    columnas = ["overall", "potential", "pace", "shooting", "passing", "dribbling", "defending", "physic"]
+    return df[columnas].mean().sort_values(ascending=False)
 
 def seccion_graficas(df):
     tabs = st.tabs(["Barras", "Dispersión", "Correlación"])
 
-    with tabs[0]:  # Barras
-        st.subheader("Distribución de Edades")
-        fig1 = distribucion_edad(df)
-        st.pyplot(fig1)
+    # Distribuciones
+    with tabs[0]:
+        st.subheader("Distribución de Edad")
+        distribucion_edad = f_distribucion_edad(df)
+        st.bar_chart(distribucion_edad)
 
-        st.subheader("Jugadores por Posición")
-        fig2 = jugadores_por_posicion(df)
-        st.pyplot(fig2)
+    with tabs[1]:
+        st.subheader("Top 20: Salario Anual vs Valuación")
+        valor_salario = valor_vs_salario(df)
+        st.line_chart(valor_salario)
 
-    with tabs[1]:  # Dispersión
-        st.subheader("Valor de Mercado vs Edad")
-        fig3 = dispersion_valor_vs_edad(df)
-        st.pyplot(fig3)
-
-    with tabs[2]:  # Correlación
-        st.subheader("Correlación entre Estadísticas")
-        fig4 = correlacion_estadisticas(df)
-        st.pyplot(fig4)
+    with tabs[2]:
+        st.subheader("Media de Métricas Generales")
+        medias = media_metricas_generales(df)
+        st.bar_chart(medias)
