@@ -93,7 +93,7 @@ def graficas_evolucion(nombre_jugador):
         seleccionado = st.selectbox("Selecciona la métrica a visualizar:", options=metricas_disponibles)
 
         if seleccionado:
-            st.bar_chart(df_jugador[seleccionado])
+            st.bokeh_chart(df_jugador[seleccionado])
 
     # --- Tab 2: Valor Económico ---
     with tabs[1]:
