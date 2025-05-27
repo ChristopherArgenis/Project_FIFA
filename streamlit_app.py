@@ -1,12 +1,12 @@
 import streamlit as st
-from utils import cargar_datos, obtener_clubes_y_nacionalidades, datosJugador, metricasJugador, metricas_avanzadas_jugador, comparar_metricas, mostrar_tops, seccion_faq, seccion_curiosidades
-from graficas import seccion_graficas
+from utils.general import cargar_datos, obtener_clubes_y_nacionalidades, datosJugador, metricasJugador, metricas_avanzadas_jugador, comparar_metricas, mostrar_tops, seccion_faq, seccion_curiosidades
+from utils.graficas import seccion_graficas
 
 st.set_page_config(page_title="FIFA App", page_icon="⚽")
 
 # Sidebar de navegación
 st.sidebar.title("Navegación")
-seccion = st.sidebar.selectbox("Ir a sección:", ["Inicio", "Jugador", "Comparador", "Top Jugadores", "Gráficos", "Curiosidades", "Preguntas (FAQ)",])
+seccion = st.sidebar.selectbox("Ir a sección:", ["Inicio", "Jugador", "Trayectoria", "Comparador", "Top Jugadores", "Gráficos", "Curiosidades", "Preguntas (FAQ)",])
 
 # --- Secciones ---
 if seccion == "Inicio":
@@ -89,6 +89,9 @@ elif seccion == "Jugador":
         metricasJugador(player)
     st.divider()
     metricas_avanzadas_jugador(player)
+
+elif seccion == "Trayectoria":
+    st.subheader("Trayecoria de Messi y Cristiano")
 
 elif seccion == "Comparador":
     st.subheader("🔍 Comparador de Jugadores")
