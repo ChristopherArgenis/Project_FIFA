@@ -96,11 +96,10 @@ elif seccion == "Trayectoria":
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
         jugador = st.selectbox("Selecciona el Jugador", ["L. Messi", "Cristiano Ronaldo"])
-    options = ["Tabla", "Graficas"]
-    selection = st.pills("Formato", options, selection_mode="single")
-    if selection == "Tabla":
+    tab1, tab2 = st.tabs(["Tabla", "Graficas"])
+    with tab1:
         seccion_trayectoria(jugador)
-    else:
+    with tab2:
         graficas_evolucion(jugador)
 
 elif seccion == "Comparador":
