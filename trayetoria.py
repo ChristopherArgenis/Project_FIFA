@@ -24,14 +24,17 @@ def formato(valor, is_wage):
 def obtener_tabla_resumen(df):
     # Agregar columna de año si no existe
     if "año" not in df.columns:
-        df["año"] = df.index
+        df["año"] = list(range(2015, 2023))
 
     columnas_utiles = [
-        "overall", "potential", "pace", "shooting", "passing", "dribbling",
-        "defending", "physic", "value_eur", "wage_eur", "age", "height_cm", "weight_kg"
+         "age", "value_eur", "wage_eur", "overall", "potential", 
+         "pace", "shooting", "passing", "dribbling", "defending", "physic"
     ]
 
     traduccion_metricas = {
+        "age": "Edad",
+        "value_eur": "Valor (€)",
+        "wage_eur": "Salario Anual (€)",
         "overall": "Media General",
         "potential": "Potencial",
         "pace": "Ritmo",
@@ -39,12 +42,7 @@ def obtener_tabla_resumen(df):
         "passing": "Pase",
         "dribbling": "Regate",
         "defending": "Defensa",
-        "physic": "Físico",
-        "value_eur": "Valor (€)",
-        "wage_eur": "Salario Anual (€)",
-        "age": "Edad",
-        "height_cm": "Altura (cm)",
-        "weight_kg": "Peso (kg)"
+        "physic": "Físico"
     }
 
     # Validar columnas existentes
@@ -56,6 +54,11 @@ def obtener_tabla_resumen(df):
         df_filtrado["value_eur"] = df_filtrado["value_eur"].apply(lambda x: formato(x, is_wage=False))
     if "wage_eur" in df_filtrado.columns:
         df_filtrado["wage_eur"] = df_filtrado["wage_eur"].apply(lambda x: formato(x, is_wage=True))
+
+    # Redondear a enteros los demás datos numéricos
+    for col in columnas_existentes:
+        if col not in ["value_eur", "wage_eur"]:
+            df_filtrado[col] = df_filtrado[col].apply(lambda x: int(x) if pd.notna(x) else x)
 
     # Establecer años como columnas
     df_filtrado.set_index("año", inplace=True)
